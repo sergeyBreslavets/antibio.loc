@@ -27,53 +27,40 @@
                             <div class="carousel-inner">
                                   
                                 <div class="item item-dark active">
+                                <a href="article_ivhd">
                                     <img src="images/prv/magazine/magazine-4.jpg" alt="">
                                     <!-- Carousel caption -->
                                     <div class="caption-bottom">
-                                        <span class="title c-white">Приветствуем вас на сайте образовательного проекта.</span>
-                                        <span class="subtitle"> Зарегистрируйтесь и вы сможете пройти дистанционную часть проекта, собрать баллы для сертификата.</span>
+                                        <span class="title c-white">Рациональная терапия ИВДП.</span>
+                                        <span class="subtitle"></span>
                                     </div>
-                                </div> 
-                                
-                                <div class="item item-light">
-                                    <img src="images/prv/magazine/magazine-2.jpg" alt="" class="img-responsive">
-                                    <!-- Carousel caption -->
-                                    <div class="caption-bottom">
-                                        <span class="title c-white">Больше тестовое название для баннера</span>
-                                        <span class="subtitle c-white">A complete website template which can be perfectly adapted if you're a school, college or another public institution.</span>
-                                    </div>
-                                </div>       
+                                </a>
+                                </div>      
                             </div>
 
-                            <!-- Controls -->
-                            <a class="left carousel-control" href="#homepageCarousel" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right carousel-control" href="#homepageCarousel" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>     
+                               
                         </div>
                     </div>
                     <div class="col-md-4">
                       
                         <div class="wp-block mb-20">
-                          <a href="">
+                          <a href="/article2">
                             <img src="images/prv/magazine/magazine-small-4.jpg" class="img-responsive" alt="">
                             <!-- Caption -->
                             <div class="caption-bottom">
-                                <span class="title c-white">Появился новый тест</span>
-                                <span class="subtitle c-white">Laoreet dolore magna aliquam erat are esrseiiqetuer ipisci.</span>
+                                <span class="title c-white">Антибиотики повышают риск развития аритмии</span>
+                                <span class="subtitle c-white"></span>
                             </div>
                           </a>
                         </div>
                       
                         <div class="wp-block no-margin">
-                          <a href="">
+                          <a href="/article1">
                             <img src="images/prv/magazine/magazine-small-7.jpg" class="img-responsive" alt="">
                             <!-- Caption -->
                             <div class="caption-bottom">
-                                <span class="title c-white">Открылась новая ссесия мероприятий</span>
-                                <span class="subtitle c-white">Laoreet dolore magna aliquam erat are esrseiiqetuer ipisci.</span>
+                                <span class="title c-white">Прием антибиотиков в младенческом возрасте и риск ожирения</span>
+                                <span class="subtitle c-white"></span>
                             </div>
                           </a>
                         </div>
@@ -113,30 +100,29 @@
                             <div class="col-md-6">
                                 <div class="wp-block article grid">
                                     <div class="article-image">
-                                        <a href=""> <img src="images/prv/magazine/magazine-small-1.jpg" alt=""></a>
+                                        <a href="/article_inhd"> <img src="images/prv/magazine/magazine-small-1.jpg" alt=""></a>
                                         <h4 class="image-title base">Обязательно к прочтению</h4>
                                     </div>
-                                    <span class="article-category">Название категории</span>
+                                    <span class="article-category"></span>
                                     <h3 class="title">
-                                        <a href="">Название материала</a>
+                                        <a href="">Рациональная терапия ИНДП</a>
                                     </h3>
                                     <p>
-                                    Laoreet dolore magna aliquam erat are esrseiiqetuer ipisci nibh euismod is tincidunt ut amat volutpat.Ut wisi enim ad minim ipiscing elit, sed diam nonummy nibh euismod is tincidunt utilin malins noineq laore.
                                     </p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="wp-block article grid">
                                     <div class="article-image">
-                                        <a href=""><img src="images/prv/magazine/magazine-small-2.jpg" alt=""></a>
+                                        <a href="/article_terapia_infekcii"><img src="images/prv/magazine/magazine-small-2.jpg" alt=""></a>
                                         <h4 class="image-title base">Рекомендуем</h4>
                                     </div>
-                                    <span class="article-category">Название категории</span>
+                                    <span class="article-category"></span>
                                     <h3 class="title">
-                                        <a href="">Новое классное название материала</a>
+                                        <a href="/article_terapia_infekcii">Рациональная терапия инфекций в урологии и гинекологии</a>
                                     </h3>
                                     <p>
-                                    Laoreet dolore magna aliquam erat are esrseiiqetuer ipisci nibh euismod is tincidunt ut amat volutpat.Ut wisi enim ad minim ipiscing elit, sed diam nonummy nibh euismod is tincidunt utilin malins noineq laore.
+                                    
                                     </p>
                                 </div>
                             </div>

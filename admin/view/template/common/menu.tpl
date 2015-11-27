@@ -21,8 +21,8 @@
       <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
       <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?> </a></li>
       <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
-      <li class="hidden"><a href="<?php echo $place; ?>"><?php echo $text_place; ?></a></li>
-      <li class="hidden"><a href="<?php echo $season; ?>"><?php echo $text_season; ?></a></li>
+      <li><a href="<?php echo $quiz; ?>"><?php echo $text_quiz; ?></a></li>
+      <li><a href="<?php echo $qitem; ?>"><?php echo $text_qitem; ?></a></li>
       <li class="hidden"><a href="<?php echo $occasion_group; ?>"><?php echo $text_occasion_group; ?> </a></li>
     </ul>
   </li>
@@ -32,21 +32,6 @@
       <li><a href="<?php echo $user; ?>"><?php echo $text_user; ?></a></li>
       <li><a href="<?php echo $user_group; ?>"><?php echo $text_user_group; ?></a></li>
       <li><a href="<?php echo $api; ?>"><?php echo $text_api; ?></a></li>
-    </ul>
-  </li>
-   <li class="sub-menu">
-   <a href=""><i class="md md-language"></i> <?php echo $text_localisation; ?></a>
-    <ul>
-      <li><a href="<?php echo $category_request; ?>"><?php echo $text_category_request; ?></a></li> 
-      <li><a href="<?php echo $contest_field; ?>"><?php echo $text_contest_field; ?></a></li> 
-      <li><a href="<?php echo $age_status; ?>"><?php echo $text_age_status; ?></a></li>
-      <li><a href="<?php echo $sex_status; ?>"><?php echo $text_sex_status; ?></a></li>
-      <li><a href="<?php echo $nationality_status; ?>"><?php echo $text_nationality_status; ?></a></li>
-      <li><a href="<?php echo $professional_status; ?>"><?php echo $text_professional_status; ?></a></li>
-      <li><a href="<?php echo $demographic_status; ?>"><?php echo $text_demographic_status; ?></a></li>
-      <li><a href="<?php echo $project_status; ?>"><?php echo $text_project_status; ?></a></li>
-      <li><a href="<?php echo $currency; ?>"><?php echo $text_currency; ?></a></li>
-      <li><a href="<?php echo $country; ?>"><?php echo $text_country; ?></a></li>
     </ul>
   </li>
 

@@ -62,14 +62,14 @@ class ControllerInformationNews extends Controller {
 	 
 		foreach ($all_news as $news) {
 			if ($news['image']) {
-				$image = $this->model_tool_image->resize($news['image'], 830, 400, 'w');
+				$image = $this->model_tool_image->resize($news['image'], 373, 240, 'h');
 			} else {
-				$image = $this->model_tool_image->resize('placeholder.png', 830, 400, 'w');
+				$image = $this->model_tool_image->resize('placeholder.png', 373, 240, 'h');
 			}
 			$data['all_news'][] = array (
 				'title' 		=> html_entity_decode($news['title'], ENT_QUOTES),
 				'image'			=> $image,
-				'description' 	=> (strlen(strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES))) > 100 ? substr(strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES)), 0, 150) . '...' : strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES))),
+				'description' 	=> (strlen(strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES))) > 100 ? mb_substr(strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES)), 0, 150) . '...' : strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES))),
 				'view' 			=> $this->url->link('information/news/news', 'news_id=' . $news['news_id']),
 				'date_added' 	=> rus_date($this->language->get('date_day_date_format'), strtotime($news['date_added']))
 			);
@@ -125,9 +125,9 @@ class ControllerInformationNews extends Controller {
 			$this->load->model('tool/image');
 			
 			if ($news['image']) {
-				$data['image'] = $this->model_tool_image->resize($news['image'], 1920, 1280, 'h');
+				$data['image'] = $this->model_tool_image->resize($news['image'], 1024, 600, 'w');
 			} else {
-				$data['image'] = $this->model_tool_image->resize('placeholder.png', 1920, 1280, 'h');
+				$data['image'] = $this->model_tool_image->resize('placeholder.png',  1024, 600, 'w');
 			}
 
 

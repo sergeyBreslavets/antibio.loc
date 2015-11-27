@@ -241,7 +241,10 @@ class ControllerCommonMenu extends Controller {
 		$data['place'] = $this->url->link('catalog/place', 'token=' . $this->session->data['token'], 'SSL');
 		$data['customer_stats'] = $this->url->link('catalog/stats', 'token=' . $this->session->data['token'], 'SSL');
 
-
+		$data['text_quiz'] 			= $this->language->get('text_quiz');
+		$data['quiz'] = $this->url->link('catalog/quiz', 'token=' . $this->session->data['token'], 'SSL');
+		$data['text_qitem'] 			= $this->language->get('text_qitem');
+		$data['qitem'] = $this->url->link('catalog/qitem', 'token=' . $this->session->data['token'], 'SSL');
 
 		return $this->load->view('common/menu.tpl', $data);
 	}

@@ -18,15 +18,24 @@ class ControllerModuleNews extends Controller {
 	 	$this->load->model('tool/image');
 
 		foreach ($results as $result) {
+			$image = array();
 			if ($result['image']) {
-				$image = $this->model_tool_image->resize($result['image'], 128, 128, 'h');
+				$image = array(
+					'h' => $this->model_tool_image->resize($result['image'], 373, 240, 'h'),
+					'w' => $this->model_tool_image->resize($result['image'], 373, 240, 'w')
+				);
 			} else {
-				$image = $this->model_tool_image->resize('placeholder.png', 128, 128, 'h');
+				$image = array(
+					'h' => $this->model_tool_image->resize('placeholder.png', 373, 240, 'h'),
+					'w' => $this->model_tool_image->resize('placeholder.png', 373, 240, 'w')
+				);
 			}
 			$data['all_news'][] = array (
-				'title' 		=> html_entity_decode($result['title'], ENT_QUOTES),
+				'title' 		=> (strlen(strip_tags(html_entity_decode($result['title'], ENT_QUOTES))) > 20 ? mb_substr(strip_tags(html_entity_decode($result['title'], ENT_QUOTES)), 0, 20) . '...' : strip_tags(html_entity_decode($result['title'], ENT_QUOTES))),
+				'full_title'	=> strip_tags(html_entity_decode($result['title'], ENT_QUOTES)),
 				'image'			=> $image,
-				'short_description' 	=> (strlen(strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES))) > 50 ? substr(strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES)), 0, 50) . '...' : strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES))),
+
+				'short_description' => (strlen(strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES))) > 65 ? mb_substr(strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES)), 0, 65) . '...' : strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES))),
 				'view' 			=> $this->url->link('information/news/news', 'news_id=' . $result['news_id']),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);

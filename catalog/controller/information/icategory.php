@@ -52,9 +52,7 @@ class ControllerInformationIcategory extends Controller {
 			}
 			$this->load->model('catalog/information');
 			
-			$filter_data = array(
-				
-			);				
+					
 
 			$data['informations'] = array();
 			$filter_data_total = array(
@@ -62,7 +60,7 @@ class ControllerInformationIcategory extends Controller {
 			);
 
 			$filter_data = array(
-				'filter_parent' => $icategory_id,
+				'filter_parent' 		=> $icategory_id,
 				'start' 				=> ($page - 1) * $this->config->get('config_product_limit'),
 				'limit'					=> $this->config->get('config_product_limit')
 			);
@@ -72,8 +70,8 @@ class ControllerInformationIcategory extends Controller {
 			$results = $this->model_catalog_information->getInformations($filter_data);
 
 			foreach ($results as $result) {
-				if ($news['image']) {
-					$image = $this->model_tool_image->resize($news['image'], 373, 240, 'h');
+				if ($result['image']) {
+					$image = $this->model_tool_image->resize($result['image'], 373, 240, 'h');
 				} else {
 					$image = $this->model_tool_image->resize('placeholder.png', 373, 240, 'h');
 				}
@@ -89,10 +87,11 @@ class ControllerInformationIcategory extends Controller {
 			$pagination->total 	= $information_total;
 			$pagination->page 	= $page;
 			$pagination->limit 	= $this->config->get('config_product_limit');
-			$pagination->url 		= $this->url->link('information/icategory', '&page={page}', 'SSL');
+			$pagination->url 	= $this->url->link('information/icategory', 'icategory_id='.$icategory_id.'&page={page}', 'SSL');
 
+			
 			$data['pagination'] = $pagination->render();
-
+			
 
 
 			$data['column_left'] = $this->load->controller('common/column_left');
@@ -102,10 +101,10 @@ class ControllerInformationIcategory extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/information.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/information/information.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/icategory.tpl')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/information/icategory.tpl', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/information/information.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/information/icategory.tpl', $data));
 			}
 		} else {
 			$data['breadcrumbs'][] = array(

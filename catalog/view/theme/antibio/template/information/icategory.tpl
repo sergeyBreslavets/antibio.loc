@@ -39,8 +39,9 @@
                 <?php $class = 'col-sm-12'; ?>
                 <?php } ?>
                 <div class="<?php echo $class; ?>">
-                  <div class="post-item">
-                          
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <div class="post-item">
                           <div class="post-content">
                               <h2 class="post-title"><a href="#" hidefocus="true" style="outline: none;"><?php echo $heading_title; ?></a></h2>
                               <span class="post-author hidden">WRITTEN BY <a href="#" hidefocus="true" style="outline: none;">James Franco</a></span>
@@ -50,14 +51,52 @@
                                <?php echo $description; ?>
                               </div>
                           </div>
+                        </div>
                           <hr>
+                  </div>
+                  <div class="row">
+                  
+                  </div>
 
+
+                    <div class="col-md-6">
+                        <!-- Standard image post example -->
+                        <div class="post-item style2 no-padding">
+                          <div class="post-content-wr">
+                              <div class="post-meta-top">
+                                  <div class="post-image">
+                                    <a href="#">
+                                                                                <img src="images/prv/blog/blog-img-1_1280x800.jpg" alt="">
+                                                                            </a>
+                                  </div>
+                                  <h2 class="post-title">
+                                    <a href="#">The true sign of intelligence is not knowledge but imagination</a>
+                                  </h2>
+                              </div>
+                              <div class="post-content clearfix">
+                                  <div class="post-tags">Posted in <a href="#">HOTELS</a>, <a href="#">SPECIAL PROMOS</a>, <a href="#">SUMMER</a></div>
+                                  <div class="post-comments"><strong>23</strong>comments</div>
+                                  <div class="post-desc">
+                                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  </div>
+                              </div>
+                              <div class="post-meta-bot clearfix">
+                                  <span class="post-author">WRITTEN BY <a href="#">MARC JACOBS</a></span>
+                                  <a href="#" class="btn btn-sm btn-base">Read more</a>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="pagination-delimiter">
+                    <?php echo $pagination; ?>
+                  </div>
                          
 
                   
                   <?php echo $content_bottom; ?>
+                
                 </div>
-
                 <?php if ($column_right) { ?>
                   <div class="col-sm-4 ">
                     <!-- SIDEBAR -->

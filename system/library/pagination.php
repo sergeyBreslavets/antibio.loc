@@ -7,8 +7,8 @@ class Pagination {
 	public $url = '';
 	public $text_first = '|&lt;';
 	public $text_last = '&gt;|';
-	public $text_next = '<i class="md md-chevron-right"></i>';
-	public $text_prev = '<i class="md md-chevron-left"></i>';
+	public $text_next = '<i class="fa fa-angle-right"></i>';
+	public $text_prev = '<i class="fa fa-angle-left"></i>';
 
 	public function render() {
 		$total = $this->total;
@@ -30,7 +30,7 @@ class Pagination {
 
 		$this->url = str_replace('%7Bpage%7D', '{page}', $this->url);
 
-		$output = '<ul class="pagination lv-pagination">';
+		$output = '<ul class="pagination pagination-style-2">';
 
 		if ($page > 1) {
 			//$output .= '<li><a href="' . str_replace('{page}', 1, $this->url) . '">' . $this->text_first . '</a></li>';
@@ -58,7 +58,7 @@ class Pagination {
 
 			for ($i = $start; $i <= $end; $i++) {
 				if ($page == $i) {
-					$output .= '<li class="active">' . $i . '</li>';
+					$output .= '<li class="active"><a href="#">' . $i . '</a></li>';
 				} else {
 					$output .= '<li><a href="' . str_replace('{page}', $i, $this->url) . '">' . $i . '</a></li>';
 				}

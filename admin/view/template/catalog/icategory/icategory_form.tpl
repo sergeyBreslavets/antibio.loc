@@ -6,7 +6,7 @@
       <div class="card-header">
         <h2>Редактирование статьи</h2>
         <ul class="actions">
-            <li> <button type="submit" form="form-information"  class="btn btn-success"><?php echo $button_save; ?></button></li>
+            <li> <button type="submit" form="form-icategory"  class="btn btn-success"><?php echo $button_save; ?></button></li>
             <li>
                 <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>">
                     <i class="md md-replay"></i>
@@ -23,7 +23,7 @@
         </div>
         <?php } ?>
          <div role="tabpanel">
-          <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-information" >
+          <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-icategory" >
             <ul class="tab-nav" role="tablist">
                 <li class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab"><?php echo $tab_general; ?></a></li>
                 <li><a href="#tab-data" aria-controls="profile11" role="tab" data-toggle="tab"><?php echo $tab_data; ?></a></li>
@@ -52,7 +52,7 @@
                             <div class="form-group required <?php if (isset($error_title[$language['language_id']])) { ?> has-error <?php } ?>">
                               <div class="fg-line">
                                   <label class="control-label" for="input-title<?php echo $language['language_id']; ?>"><?php echo $entry_title; ?></label>
-                                  <input type="text" name="information_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['title'] : ''; ?>"  id="input-title<?php echo $language['language_id']; ?>" class="form-control" />
+                                  <input type="text" name="icategory_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($icategory_description[$language['language_id']]) ? $icategory_description[$language['language_id']]['title'] : ''; ?>"  id="input-title<?php echo $language['language_id']; ?>" class="form-control" />
                               </div>
                               <?php if (isset($error_title[$language['language_id']])) { ?>
                                 <small class="help-block"><?php echo $error_title[$language['language_id']]; ?></small>
@@ -62,7 +62,7 @@
                             <div class="form-group required <?php if (isset($error_description[$language['language_id']])) { ?> has-error <?php } ?>">
                               <div class="fg-line">
                                   <label class="control-label m-b-10" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_description; ?></label>
-                                  <textarea name="information_description[<?php echo $language['language_id']; ?>][description]" id="input-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['description'] : ''; ?></textarea>
+                                  <textarea name="icategory_description[<?php echo $language['language_id']; ?>][description]" id="input-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($icategory_description[$language['language_id']]) ? $icategory_description[$language['language_id']]['description'] : ''; ?></textarea>
                               </div>
                               <?php if (isset($error_description[$language['language_id']])) { ?>
                                 <small class="help-block"><?php echo $error_description[$language['language_id']]; ?></small>
@@ -72,7 +72,7 @@
                             <div class="form-group required <?php if (isset($error_title[$language['language_id']])) { ?> has-error <?php } ?>">
                               <div class="fg-line">
                                   <label class="control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
-                                  <input type="text" name="information_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_title'] : ''; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
+                                  <input type="text" name="icategory_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($icategory_description[$language['language_id']]) ? $icategory_description[$language['language_id']]['meta_title'] : ''; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
                               </div>
                               <?php if (isset($error_meta_title[$language['language_id']])) { ?>
                                 <small class="help-block"><?php echo $error_meta_title[$language['language_id']]; ?></small>
@@ -82,13 +82,13 @@
                             <div class="form-group">
                               <div class="fg-line">
                                   <label class="control-label m-b-10" for="input-meta-description<?php echo $language['language_id']; ?>"><?php echo $entry_meta_description; ?></label>
-                                  <textarea name="information_description[<?php echo $language['language_id']; ?>][meta_description]" class="form-control auto-size" rows="4" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
+                                  <textarea name="icategory_description[<?php echo $language['language_id']; ?>][meta_description]" class="form-control auto-size" rows="4" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($icategory_description[$language['language_id']]) ? $icategory_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
                               </div>
                             </div>
                             <div class="form-group">
                               <div class="fg-line">
                                   <label class="control-label m-b-10" for="input-meta-keyword<?php echo $language['language_id']; ?>"><?php echo $entry_meta_keyword; ?></label>
-                                  <textarea name="information_description[<?php echo $language['language_id']; ?>][meta_keyword]" class="form-control auto-size" rows="4" id="input-meta-keyword<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
+                                  <textarea name="icategory_description[<?php echo $language['language_id']; ?>][meta_keyword]" class="form-control auto-size" rows="4" id="input-meta-keyword<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($icategory_description[$language['language_id']]) ? $icategory_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
                               </div>
                             </div>
                           </div><!--/.card-body -->
@@ -106,11 +106,11 @@
                         <div class="well well-sm" style="height: 150px; overflow: auto;">
                           <div class="checkbox">
                             <label>
-                              <?php if (in_array(0, $information_store)) { ?>
-                              <input type="checkbox" name="information_store[]" value="0" checked="checked" />
+                              <?php if (in_array(0, $icategory_store)) { ?>
+                              <input type="checkbox" name="icategory_store[]" value="0" checked="checked" />
                               <?php echo $text_default; ?>
                               <?php } else { ?>
-                              <input type="checkbox" name="information_store[]" value="0" />
+                              <input type="checkbox" name="icategory_store[]" value="0" />
                               <?php echo $text_default; ?>
                               <?php } ?>
                             </label>
@@ -118,11 +118,11 @@
                           <?php foreach ($stores as $store) { ?>
                           <div class="checkbox">
                             <label>
-                              <?php if (in_array($store['store_id'], $information_store)) { ?>
-                              <input type="checkbox" name="information_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                              <?php if (in_array($store['store_id'], $icategory_store)) { ?>
+                              <input type="checkbox" name="icategory_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
                               <?php echo $store['name']; ?>
                               <?php } else { ?>
-                              <input type="checkbox" name="information_store[]" value="<?php echo $store['store_id']; ?>" />
+                              <input type="checkbox" name="icategory_store[]" value="<?php echo $store['store_id']; ?>" />
                               <?php echo $store['name']; ?>
                               <?php } ?>
                             </label>
@@ -159,19 +159,7 @@
                       </div>
                     </div>
                     
-                    <div class="checkbox m-b-15 hidden">
-                        <label>
-                            <?php if ($bottom) { ?>
-                            <input type="checkbox" name="bottom" value="1" checked="checked" id="input-bottom" />
-                            <?php } else { ?>
-                            <input type="checkbox" name="bottom" value="0" id="input-bottom" />
-                            <?php } ?>
-                            <i class="input-helper"></i>
-                            <?php echo $entry_bottom; ?>
-                        </label>
-                    </div>
-                    
-                     <div class="form-group">
+                    <div class="form-group">
                       <div class="fg-line">
                           <label class="control-label" for="input-sort-order"><?php echo $entry_parent; ?></label>
                           <div class="select">
@@ -188,7 +176,26 @@
                           </div>
                       </div>
                     </div>
+
                     
+
+                     <div class="form-group">
+                      <div class="fg-line">
+                        <label class="control-label" for="input-status"><?php echo $entry_bottom; ?></label>
+                        <div class="select">
+                          <select name="bottom" id="input-bottom" class="form-control">
+                            <?php if ($bottom) { ?>
+                            <option value="0"><?php echo $text_disabled; ?></option>
+                            <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                            <?php } else { ?>
+                            <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                            <option value="1"><?php echo $text_enabled; ?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
 
                     <div class="form-group ">
                       <div class="fg-line">
@@ -215,9 +222,9 @@
                       <div class="fg-line">
                           <label class="control-label" for="input-sort-order"><?php echo $entry_layout; ?></label>
                           <div class="select">
-                              <select name="information_layout[0]" class="form-control">
+                              <select name="icategory_layout[0]" class="form-control">
                                   <?php foreach ($layouts as $layout) { ?>
-                                  <?php if (isset($information_layout[0]) && $information_layout[0] == $layout['layout_id']) { ?>
+                                  <?php if (isset($icategory_layout[0]) && $icategory_layout[0] == $layout['layout_id']) { ?>
                                   <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
                                   <?php } else { ?>
                                   <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
@@ -235,10 +242,10 @@
 
                           <?php foreach ($stores as $store) { ?>
                           <?php echo $store['name']; ?>
-                           <select name="information_layout[<?php echo $store['store_id']; ?>]" class="form-control">
+                           <select name="icategory_layout[<?php echo $store['store_id']; ?>]" class="form-control">
                                 <option value=""></option>
                                 <?php foreach ($layouts as $layout) { ?>
-                                <?php if (isset($information_layout[$store['store_id']]) && $information_layout[$store['store_id']] == $layout['layout_id']) { ?>
+                                <?php if (isset($icategory_layout[$store['store_id']]) && $icategory_layout[$store['store_id']] == $layout['layout_id']) { ?>
                                 <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
                                 <?php } else { ?>
                                 <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>

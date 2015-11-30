@@ -128,7 +128,29 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$data['class'] = 'common-home';
 		}
-		
+
+
+		//******* подтянем категории *******//
+		$this->load->model('catalog/icategory');
+		$data['icategories'] = array();
+
+		$filter_data = array(
+			'filter_parent' => 0,
+			'filter_top' 	=> 1,
+		);
+
+		$results_icategories = $this->model_catalog_icategory->getIcategorys($filter_data);
+
+		foreach ($results_icategories as $ric) {
+			$data['icategories'][] = array(
+				'icategory_title'  =>	$ric['title'],
+				'icategory_href'   =>	$this->url->link('information/icategory', 'icategory_id='.$ric['icategory_id'], 'SSL')
+			);
+		}
+
+
+
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);
 		} else {

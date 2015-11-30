@@ -47,6 +47,10 @@ class ControllerCommonSeoUrl extends Controller {
 						$this->request->get['information_id'] = $url[1];
 					}
 
+					if ($url[0] == 'icategory_id') {
+						$this->request->get['icategory_id'] = $url[1];
+					}
+
 					if ($url[0] == 'news_id') {
 						$this->request->get['news_id'] = $url[1];
 					}
@@ -65,7 +69,7 @@ class ControllerCommonSeoUrl extends Controller {
 						$this->request->get['occasion_id'] = $url[1];
 					}
 
-					if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id' && $url[0] != 'news_id' && $url[0] != 'occasion_id' && $url[0] != 'place_id' && $url[0] != 'raiting_id' && $url[0] != 'quiz_id' && $url[0] != 'rshare_id' && $url[0] != 'qshare_id' ) {
+					if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'icategory_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id' && $url[0] != 'news_id' && $url[0] != 'occasion_id' && $url[0] != 'place_id' && $url[0] != 'raiting_id' && $url[0] != 'quiz_id' && $url[0] != 'rshare_id' && $url[0] != 'qshare_id' ) {
 						$this->request->get['route'] = $query->row['query'];
 					}
 				} else {
@@ -84,6 +88,8 @@ class ControllerCommonSeoUrl extends Controller {
 					$this->request->get['route'] = 'product/manufacturer/info';
 				} elseif (isset($this->request->get['information_id'])) {
 					$this->request->get['route'] = 'information/information';
+				} elseif (isset($this->request->get['icategory_id'])) {
+					$this->request->get['route'] = 'information/icategory';
 				} elseif (isset($this->request->get['news_id'])) {
 					$this->request->get['route'] = 'information/news/news';
 				} elseif (isset($this->request->get['place_id'])) {
@@ -136,6 +142,7 @@ class ControllerCommonSeoUrl extends Controller {
 					($data['route'] == 'information/quiz/result' && $key == 'qshare_id') || 
 					($data['route'] == 'product/product' && $key == 'product_id') || 
 					(($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || 
+					($data['route'] == 'information/icategory' && $key == 'icategory_id')||
 					($data['route'] == 'information/information' && $key == 'information_id')
 				) {
 					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");

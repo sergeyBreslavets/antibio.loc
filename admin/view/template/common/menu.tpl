@@ -1,8 +1,8 @@
 <ul class="main-menu">
-  <li class="hidden"><a href="<?php echo $home; ?>"><i class="md md-dashboard"></i> <?php echo $text_dashboard; ?></a></li>
+  <li ><a href="<?php echo $home; ?>"><i class="md md-dashboard"></i> <?php echo $text_dashboard; ?></a></li>
 
   
-  <li><a href="<?php echo $contest; ?>"><i class="md md-format-list-bulleted"></i> <?php echo $text_contest; ?> </a></li>
+  
   <li  class="hidden"><a href="<?php echo $occasion_record; ?>"><i class="md md-receipt"></i> <?php echo $text_occasion_record; ?></a></li>
   <li class="hidden"><a href="<?php echo $occasion; ?>"><i class="md md-format-list-bulleted"></i> <?php echo $text_occasion; ?> </a></li>
   <li class="sub-menu">
@@ -17,9 +17,11 @@
   <li class="sub-menu">
     <a href=""><i class="md md-description"></i> <?php echo $text_content; ?></a>
     <ul>
-      <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>	
+     
+      <li><a href="<?php echo $icategory; ?>"><?php echo $text_icategory; ?></a></li>
       <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
       <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?> </a></li>
+      <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>  
       <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
       <li><a href="<?php echo $quiz; ?>"><?php echo $text_quiz; ?></a></li>
       <li><a href="<?php echo $qitem; ?>"><?php echo $text_qitem; ?></a></li>

@@ -121,6 +121,7 @@ $_['text_contest_field']          	   = 'Поля для заявки';
 $_['text_category_request']            = 'Категории полей заявки';
 $_['text_quiz']            = 'Тесты';
 $_['text_qitem']            = 'Вопросы к тестам';
+$_['text_icategory']            = 'Категории';
 
 
 

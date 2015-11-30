@@ -46,7 +46,7 @@
 <div id="divHeaderWrapper">
   <header class="header-standard-2">     
     <!-- MAIN NAV -->
-    <div class="navbar navbar-wp navbar-fixed affix-top navbar-shadow" data-spy="affix" data-offset-top="100" role="navigation">
+    <div class="navbar navbar-wp navbar-fixed affix-top navbar-shadow navbar-arrow" data-spy="affix" data-offset-top="100" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -61,7 +61,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="about_us">О проекте</a></li>
-                    <li><a href="">Лекции и вебинары</a></li>
+                    
+                    <?php if (!empty($icategories)) { ?>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Лекции и вебинары</a>
+                        <ul class="dropdown-menu">
+                            <?php foreach ($icategories as $ic) { ?>
+                                <li><a href="<?php echo $ic['icategory_href']; ?>"><?php echo $ic['icategory_title']; ?></a></li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                      
+                    <? } ?>
+                    
+
                     <li class="hidden"><a href="">Календарь</a></li>
                     <li><a href="/list-news">Интересно</a></li>
                     <?php if ($logged) { ?>

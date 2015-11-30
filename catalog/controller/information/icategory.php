@@ -1,7 +1,7 @@
 <?php
 class ControllerInformationIcategory extends Controller {
 	public function index() {
-		$this->load->language('informationƒ/icategory');
+		$this->load->language('information/icategory');
 
 		$this->load->model('catalog/icategory');
 
@@ -39,27 +39,60 @@ class ControllerInformationIcategory extends Controller {
 			$this->load->model('tool/image');
 			
 			//подтянем список статей для данной категории
+			$url = '';
+		
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}	
 
-
-
-
-			/*
+			if (isset($this->request->get['page'])) {
+				$page = $this->request->get['page'];
+			} else { 
+				$page = 1;
+			}
+			$this->load->model('catalog/information');
+			
 			$filter_data = array(
-			'page' 	=> $page,
-			'limit' => 10,
-			'start' => 10 * ($page - 1),
+				
+			);				
+
+			$data['informations'] = array();
+			$filter_data_total = array(
+				'filter_parent' => $icategory_id
 			);
-			
-			$total = $this->model_catalog_news->getTotalNews();
-			
+
+			$filter_data = array(
+				'filter_parent' => $icategory_id,
+				'start' 				=> ($page - 1) * $this->config->get('config_product_limit'),
+				'limit'					=> $this->config->get('config_product_limit')
+			);
+
+			$information_total = $this->model_catalog_information->getTotalInformations($filter_data_total);
+
+			$results = $this->model_catalog_information->getInformations($filter_data);
+
+			foreach ($results as $result) {
+				if ($news['image']) {
+					$image = $this->model_tool_image->resize($news['image'], 373, 240, 'h');
+				} else {
+					$image = $this->model_tool_image->resize('placeholder.png', 373, 240, 'h');
+				}
+				$data['informations'][] = array(
+					'information_id' => $result['information_id'],
+					'title'          => $result['title']
+						
+				);
+			}
+
+
 			$pagination = new Pagination();
-			$pagination->total = $total;
-			$pagination->page = $page;
-			$pagination->limit = 10;
-			$pagination->url = $this->url->link('information/icategory', 'page={page}');
-			
+			$pagination->total 	= $information_total;
+			$pagination->page 	= $page;
+			$pagination->limit 	= $this->config->get('config_product_limit');
+			$pagination->url 		= $this->url->link('information/icategory', '&page={page}', 'SSL');
+
 			$data['pagination'] = $pagination->render();
-			*/
+
 
 
 			$data['column_left'] = $this->load->controller('common/column_left');

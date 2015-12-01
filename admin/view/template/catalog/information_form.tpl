@@ -58,7 +58,15 @@
                                 <small class="help-block"><?php echo $error_title[$language['language_id']]; ?></small>
                               <?php } ?>
                             </div>
-
+                            <div class="form-group required <?php if (isset($error_sub_description[$language['language_id']])) { ?> has-error <?php } ?>">
+                              <div class="fg-line">
+                                  <label class="control-label m-b-10" for="input-sub_description<?php echo $language['language_id']; ?>"><?php echo $entry_sub_description; ?></label>
+                                  <textarea rows='5' name="information_description[<?php echo $language['language_id']; ?>][sub_description]" id="input-sub_description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['sub_description'] : ''; ?></textarea>
+                              </div>
+                              <?php if (isset($error_sub_description[$language['language_id']])) { ?>
+                                <small class="help-block"><?php echo $error_sub_description[$language['language_id']]; ?></small>
+                              <?php } ?>
+                            </div>
                             <div class="form-group required <?php if (isset($error_description[$language['language_id']])) { ?> has-error <?php } ?>">
                               <div class="fg-line">
                                   <label class="control-label m-b-10" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_description; ?></label>

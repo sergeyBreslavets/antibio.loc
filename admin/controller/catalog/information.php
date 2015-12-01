@@ -270,6 +270,7 @@ class ControllerCatalogInformation extends Controller {
 
 		$data['entry_title'] = $this->language->get('entry_title');
 		$data['entry_description'] = $this->language->get('entry_description');
+		$data['entry_sub_description'] = $this->language->get('entry_sub_description');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
@@ -313,6 +314,13 @@ class ControllerCatalogInformation extends Controller {
 		} else {
 			$data['error_description'] = array();
 		}
+
+		if (isset($this->error['sub_description'])) {
+			$data['error_sub_description'] = $this->error['sub_description'];
+		} else {
+			$data['error_sub_description'] = array();
+		}
+
 
 		if (isset($this->error['meta_title'])) {
 			$data['error_meta_title'] = $this->error['meta_title'];
@@ -509,6 +517,9 @@ class ControllerCatalogInformation extends Controller {
 
 			if (utf8_strlen($value['description']) < 3) {
 				$this->error['description'][$language_id] = $this->language->get('error_description');
+			}
+			if (utf8_strlen($value['sub_description']) < 3) {
+				$this->error['sub_description'][$language_id] = $this->language->get('sub_description');
 			}
 
 			if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {

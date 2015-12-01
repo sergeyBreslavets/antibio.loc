@@ -71,15 +71,18 @@ class ControllerInformationIcategory extends Controller {
 
 			foreach ($results as $result) {
 				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], 373, 240, 'h');
+					$image = $this->model_tool_image->resize($result['image'], 360, 200, 'w');
 				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', 373, 240, 'h');
+					$image = $this->model_tool_image->resize('placeholder.png', 360, 200, 'w');
 				}
 				$data['informations'][] = array(
-					'information_id' => $result['information_id'],
-					'title'          => $result['title']
-						
+					'information_id' 	=> $result['information_id'],
+					'title'          	=> $result['title'],
+					'image'						=> $image,
+					'sub_description'	=> ( strip_tags( html_entity_decode($result['sub_description'], ENT_QUOTES)) ) > 100 ? mb_substr(strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)), 0, 150) . '...' : strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)),
+					'information_href'=> $this->url->link('information/information', 'information_id=' . $result['information_id']),
 				);
+				
 			}
 
 

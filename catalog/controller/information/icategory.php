@@ -79,7 +79,7 @@ class ControllerInformationIcategory extends Controller {
 					'information_id' 	=> $result['information_id'],
 					'title'          	=> $result['title'],
 					'image'						=> $image,
-					'sub_description'	=> ( strip_tags( html_entity_decode($result['sub_description'], ENT_QUOTES)) ) > 100 ? mb_substr(strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)), 0, 150) . '...' : strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)),
+					'sub_description'	=> ( strlen(strip_tags( html_entity_decode($result['sub_description'], ENT_QUOTES))) ) > 100 ? mb_substr(strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)), 0, 150) . '...' : strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)),
 					'information_href'=> $this->url->link('information/information', 'information_id=' . $result['information_id']),
 				);
 				

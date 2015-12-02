@@ -495,7 +495,7 @@ class ControllerCatalogQuiz extends Controller {
     if (isset($this->request->post['quiz_share'])) {
       $quiz_shares = $this->request->post['quiz_share'];
     } elseif (isset($this->request->get['quiz_id'])) {
-      $quiz_shares = $this->model_catalog_quiz->getQuizImages($this->request->get['quiz_id']);
+      $quiz_shares =  array();//$this->model_catalog_quiz->getQuizImages($this->request->get['quiz_id']);
     } else {
       $quiz_shares = array();
     }

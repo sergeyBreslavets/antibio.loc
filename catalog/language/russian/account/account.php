@@ -22,3 +22,9 @@ $_['text_transactions']  = 'Транзакции';
 $_['text_add_group']	 = 'Создать инициативную группу';
 $_['text_add_project']	 = 'Добавить проект';
 $_['text_logout']        = 'Выход';
+
+
+$_['text_check_test'] = '<i class="fa fa-check"></i> Зачет';
+$_['text_check_test'] = '<i class="fa fa-check"></i> Зачет';
+
+$_['btn_start_test']  =   'Пройти тест';

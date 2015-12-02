@@ -82,20 +82,45 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($quizs as $qv) { ?>
-                                               <tr>
-                                                    <td><?php echo $qv['quiz_title']; ?></td>
-                                                    <td>0</td>
-                                                    <td>27-11-2015</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><a href="<?php echo $qv['quiz_view']; ?>" class="btn btn-b-base"><?php echo $btn_start_test; ?></a></td>
-                                                </tr> 
-                                            <?php }?>
-                                            
                                             <?php ?>
-
-
+                                            <tr>
+                                                <td><a href="#">Инфекции Верхних Дыхательных Путей</a></td>
+                                                <td>1</td>
+                                                <td>27-11-2015</td>
+                                                <td><i class="fa fa-check"></i> Зачет</td>
+                                                <td>5</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">Инфекции Верхних Дыхательных Путей</a></td>
+                                               
+                                                <td>3
+                                                    <br>
+                                                    <strong>Осталось 2 попытки</strong></td>
+                                                <td>27-11-2015</td>
+                                                <td><i class="fa fa-times"></i> Не зачет</td>
+                                                <td></td>
+                                                <td><a href="/test_infekcii_verchnix_dixatelnix_putei" class="btn btn-b-base">Пройти тест</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">Инфекции Верхних Дыхательных Путей</a></td>
+                                                <td>0</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a href="/test_infekcii_verchnix_dixatelnix_putei" class="btn btn-b-base">Пройти тест</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Инфекции Верхних Дыхательных Путей</td>
+                                               
+                                                <td>3
+                                                    <br>
+                                                    <strong>Осталось 0 попыток</strong></td>
+                                                <td>27-11-2015</td>
+                                                <td><i class="fa fa-times"></i> Не зачет</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
                                             <tr>
                                                 <td colspan="4" class="text-right">Промокоды</td>
                                                 <td>5</td>

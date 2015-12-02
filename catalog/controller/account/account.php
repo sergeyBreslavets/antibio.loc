@@ -83,10 +83,13 @@ class ControllerAccountAccount extends Controller {
 		$data['account_custom_field'] = unserialize($customer_info['custom_field']);
 
 		if (!empty($customer_info) && !empty($customer_info['image'])){
+
 			if(preg_match('/http/', $customer_info['image'])){
 				$data['avatar'] = $customer_info['image'];
 			}else{
+
 				$upload_info = $this->model_tool_upload->getUploadByCode($customer_info['image']);
+
 				$filename = $upload_info['filename'];
 				$data['avatar'] = $this->model_tool_upload->resize($filename , 360, 490, 'h');
 			}
@@ -94,8 +97,26 @@ class ControllerAccountAccount extends Controller {
 			$data['avatar'] = $this->model_tool_image->resize('account.jpg', 360, 490, 'h');
 		}
 
+		/***************** тесты и баллы *******************/
+		$this->load->model('catalog/quiz');
+		$filter_data = array();
+		$filter_data = array(
+			'filter_status' 		=> 	1
+		);
 
+		$quiz_results = $this->model_catalog_quiz->getQuizs($filter_data);
+		$data['quizs'] = array();
+		foreach ($quiz_results  as $result_q) {
 
+			$data['quizs'][] = array(
+				'quiz_id'				=> $result_q['quiz_id'],
+				'quiz_title'		=> $result_q['title'],
+				'quiz_view'			=> $this->url->link('information/quiz/view', 'quiz_id='.$result_q['quiz_id'], 'SSL')
+			);
+
+		}
+		
+		$data['btn_start_test'] = $this->language->get('btn_start_test');
 
 
 

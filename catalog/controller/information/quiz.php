@@ -93,12 +93,17 @@ class ControllerInformationQuiz extends Controller {
 
 	}
 	
+
+
 	public function view(){
 		if (isset($this->request->get['quiz_id'])) {
 			$quiz_id = (int)$this->request->get['quiz_id'];
 		} else {
 			$this->response->redirect($this->url->link('common/home', '', 'SSL'));
 		}
+
+/********** проверки ***********/
+//записываем количество попыток 
 		$this->load->language('information/quiz');
     	$this->load->model('catalog/quiz');
 		//подсасываем скрипт для данного опроса
@@ -135,6 +140,9 @@ class ControllerInformationQuiz extends Controller {
 			$this->response->setOutput($this->load->view('default/template/quiz/'.$template_name.'.tpl', $data));
 		}
 	}
+
+
+
 
 	
 	public function result(){ 

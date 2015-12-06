@@ -4,6 +4,8 @@ class ModelCatalogQuiz extends Model {
 		$this->event->trigger('pre.admin.quiz.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "quiz SET 
+			quiz_count_attempts = '" . (int)$data['quiz_count_attempts'] . "',
+			quiz_correct_answer = '" . (int)$data['quiz_correct_answer'] . "',
 			image = '" . $this->db->escape($data['image']) . "',
 			template_id = '" . $this->db->escape($data['template_id']) . "',
 			visibility = '" . (int)$data['visibility'] . "',
@@ -33,29 +35,7 @@ class ModelCatalogQuiz extends Model {
 			");
 		}
 		
-		if (isset($data['quiz_share'])) {
-		      foreach ($data['quiz_share'] as $quiz_share) {
-		        $this->db->query("INSERT INTO " . DB_PREFIX . "quiz_share SET 
-		          quiz_id = '" . (int)$quiz_id . "',
-		          percent_start = '" . (int)$quiz_share['percent_start'] . "', 
-		          percent_end = '" . (int)$quiz_share['percent_end'] . "',
-		          image = '" .  $this->db->escape($quiz_share['image']) . "', 
-		          sort_order = '" . (int)$quiz_share['sort_order'] . "'
-		        ");
-
-		        $quiz_share_id = $this->db->getLastId();
-
-		        foreach ($quiz_share['quiz_share_description'] as $language_id => $quiz_share_description) {
-		          $this->db->query("INSERT INTO " . DB_PREFIX . "quiz_share_description SET 
-		            quiz_share_id = '" . (int)$quiz_share_id . "', 
-		            language_id = '" . (int)$language_id . "', 
-		            quiz_id = '" . (int)$quiz_id . "', 
-		            share_title = '" .  $this->db->escape($quiz_share_description['share_title']) . "',
-		            share_comment = '" .  $this->db->escape($quiz_share_description['share_comment']) . "'
-		          ");
-		        }
-		      }
-		    }
+		
 		$this->event->trigger('post.admin.quiz.add', $quiz_id);
 
 		return $quiz_id;
@@ -65,6 +45,8 @@ class ModelCatalogQuiz extends Model {
 		$this->event->trigger('pre.admin.quiz.edit', $data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "quiz SET 
+			quiz_count_attempts = '" . (int)$data['quiz_count_attempts'] . "',
+			quiz_correct_answer = '" . (int)$data['quiz_correct_answer'] . "',
 			image = '" . $this->db->escape($data['image']) . "',
 			template_id = '" . $this->db->escape($data['template_id']) . "',
 			type_id = '" . (int)$data['type_id'] . "',
@@ -94,33 +76,7 @@ class ModelCatalogQuiz extends Model {
 			");
 		}
 		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "quiz_share WHERE quiz_id = '" . (int)$quiz_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "quiz_share_description WHERE quiz_id = '" . (int)$quiz_id . "'");
-		    
-		    
-		     if (isset($data['quiz_share'])) {
-		      foreach ($data['quiz_share'] as $quiz_share) {
-		        $this->db->query("INSERT INTO " . DB_PREFIX . "quiz_share SET 
-		          quiz_id = '" . (int)$quiz_id . "',
-		          percent_start = '" . (int)$quiz_share['percent_start'] . "', 
-		          percent_end = '" . (int)$quiz_share['percent_end'] . "',
-		          image = '" .  $this->db->escape($quiz_share['image']) . "', 
-		          sort_order = '" . (int)$quiz_share['sort_order'] . "'
-		        ");
-
-		        $quiz_share_id = $this->db->getLastId();
-
-		        foreach ($quiz_share['quiz_share_description'] as $language_id => $quiz_share_description) {
-		          $this->db->query("INSERT INTO " . DB_PREFIX . "quiz_share_description SET 
-		            quiz_share_id = '" . (int)$quiz_share_id . "', 
-		            language_id = '" . (int)$language_id . "', 
-		            quiz_id = '" . (int)$quiz_id . "', 
-		            share_title = '" .  $this->db->escape($quiz_share_description['share_title']) . "',
-		            share_comment = '" .  $this->db->escape($quiz_share_description['share_comment']) . "'
-		          ");
-		        }
-		      }
-		    }
+		
 
 		$this->event->trigger('post.admin.quiz.edit', $quiz_id);
 	}

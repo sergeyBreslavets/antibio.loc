@@ -407,6 +407,25 @@ class ControllerCatalogQuiz extends Controller {
 			$data['template_id'] = '';
 		}
 
+		//количсетво правильных ответомв для прохождения теста
+		if (isset($this->request->post['quiz_correct_answer'])) {
+			$data['quiz_correct_answer'] = $this->request->post['quiz_correct_answer'];
+		} elseif (!empty($quiz_info)) {
+			$data['quiz_correct_answer'] = $quiz_info['quiz_correct_answer'];
+		} else {
+			$data['quiz_correct_answer'] = 5;
+		}
+		//количсетво попыток
+		if (isset($this->request->post['quiz_count_attempts'])) {
+			$data['quiz_count_attempts'] = $this->request->post['quiz_count_attempts'];
+		} elseif (!empty($quiz_info)) {
+			$data['quiz_count_attempts'] = $quiz_info['quiz_count_attempts'];
+		} else {
+			$data['quiz_count_attempts'] = 5;
+		}
+
+		
+
 
 		$data['ar_status'] = array();
 		//дописать подтяжку со статусами

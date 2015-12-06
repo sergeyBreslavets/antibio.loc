@@ -217,11 +217,11 @@ class ModelCatalogQuiz extends Model {
 					if($value['qitem_id'] == $mq['qitem_id']){
 						$d_qitems[] = array(
 								'question_id' 		=> $value['question_id'],
-          			'correct' 			=> $value['correct'],
+          						'correct' 			=> $value['correct'],
 								'answer_title'		=> $value['answer_title'],
-		            'answer_comment'	=> $value['answer_comment'],
-		            'image'				=> $value['image'],
-		            'sort_order'		=> $value['sort_order']
+					            'answer_comment'	=> $value['answer_comment'],
+					            'image'				=> $value['image'],
+					            'sort_order'		=> $value['sort_order']
 						);
 					}
 					
@@ -234,4 +234,30 @@ class ModelCatalogQuiz extends Model {
 		}
 		return $data_qitems;
 	}
+	public function addAnswerForQuiz($data=array(),$customer_id,$mark){
+		//в mark пишем количество правильных ответов
+		$customer_to_quiz_id = 0;
+		if(!empty($data['answer'])){
+			$quiz_id = $data['quiz_id'];
+			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_to_quiz SET 
+				customer_id = '" . (int)$customer_id . "', 
+				quiz_id = '" . (int)$quiz_id . "', 
+				mark = '" . (int)$mark . "', 
+				answer = '" .  $this->db->escape(serialize($data['answer']) )  . "', 
+				ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "',
+			    date_added = NOW()"
+			);
+			$customer_to_quiz_id = $this->db->getLastId();
+		}
+		
+		return $customer_to_quiz_id;
+	}
+	public function getQuizsForCustomer($customer_id){
+		$sql = "SELECT * FROM " . DB_PREFIX . "customer_to_quiz WHERE customer_id = '" .(int)$customer_id ."'";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
 }

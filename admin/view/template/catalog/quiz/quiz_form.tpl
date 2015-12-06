@@ -95,6 +95,24 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
+                          <div class="fg-line">
+                              <label class="control-label" for="input-quiz_correct_answer">Количестов правильных ответов для прохождения теста</label>
+                              <input type="text" name="quiz_correct_answer" value="<?php echo $quiz_correct_answer; ?>"  id="input-quiz_correct_answer" class="form-control" />
+                          </div>
+                        </div><!--/.form-group-->
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <div class="fg-line">
+                              <label class="control-label" for="input-quiz_count_attempts">Количестов максимальных попыток</label>
+                              <input type="text" name="quiz_count_attempts" value="<?php echo $quiz_count_attempts; ?>"  id="input-quiz_count_attempts" class="form-control" />
+                          </div>
+                        </div><!--/.form-group-->
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
                           <label class="col-sm-2 control-label" for="input-image"><?php echo $entry_image; ?></label>
                           <div class="col-sm-10">
                             <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail">
@@ -194,6 +212,11 @@
                           </div>
                         </div>
                       </div>
+
+                      
+
+
+
                     </div>
                   </div>
                 </div>

@@ -104,6 +104,9 @@
                         </div>
                       </div>
                   </div>
+                  <form id="poll-form" role="form" action="/#">
+                    <input type="hidden" name="quiz_id" value="<?php echo $quiz_id;?>">
+                  </form>
                   <script type="text/javascript">
                       var q = <?php echo $quiz_id; ?>;
                       var count_steps_of_wizard = <?php echo count($step_questions); ?>;

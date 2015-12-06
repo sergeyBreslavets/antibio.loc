@@ -109,7 +109,7 @@ class ControllerAccountAccount extends Controller {
 		//список всех существующих тестов
 		foreach ($quiz_results  as $result_q) {
 
-			$data['quizs'][] = array(
+			$quizs[] = array(
 				'quiz_id'				=> $result_q['quiz_id'],
 				'quiz_correct_answer'	=> $result_q['quiz_correct_answer'],
 				'quiz_count_attempts'	=> $result_q['quiz_count_attempts'],
@@ -121,8 +121,11 @@ class ControllerAccountAccount extends Controller {
 
 		$data['btn_start_test'] = $this->language->get('btn_start_test');
 		//подтянем список тестов которые прошел пользователь
-		
-		$customer_to_quiz  = $this->model_catalog_quiz->getQuizsForCustomer($customer_id);
+		$filter_data = array();
+		$filter_data = array(
+			'filter_customer_id' 		=> 	$customer_id
+		);
+		$customer_to_quiz  = $this->model_catalog_quiz->getQuizsForCustomer($filter_data);
 		$data['customer_to_quiz'] = array();
 		foreach ($customer_to_quiz as $vcq) {
 			$data['customer_to_quiz'][$vcq['quiz_id']] = array(
@@ -138,11 +141,128 @@ class ControllerAccountAccount extends Controller {
 
 		//quiz_count_attempts - количестов попыток
 
-//		$data['quizs'] = array();
+		$data['quizs'] = array();
 
 
 
 
+
+/******************* группы *******************/
+		$data['text_add_group'] = $this->language->get('text_add_group');
+		$data['add_group'] = $this->url->link('group/edit', '', 'SSL'); 
+
+		//подтянем все активные группы
+		//сделать рефактор заменить на IN () как getInfoCustomersForGroups
+		$results_groups = $this->model_group_group->getGroups();
+		$data['init_groups'] = array();
+		foreach ($results_groups as $result_g) {
+			if (!empty($result_g['image'])) {
+				$upload_info = $this->model_tool_upload->getUploadByCode($result_g['image']);
+				$filename = $upload_info['filename'];
+				$image = $this->model_tool_upload->resize($filename , 300, 300,'h');
+			} else {
+				$image = $this->model_tool_image->resize('no-image.png', 300, 300,'h');
+			}
+
+			$filter_data = array();
+			$filter_data = array(
+				'filter_status' 		=> 	1,
+				'filter_init_group_id'	=>	$result_g['init_group_id']
+			);
+			$results_count_customer_in_group = array();
+			$results_count_customer_in_group = $this->model_group_group->getInviteGroups($filter_data);
+
+			$count = count($results_count_customer_in_group)+1;
+
+			$actions = array(
+				'view'		=> $this->url->link('group/view', 'group_id='.$result_g['init_group_id'], 'SSL'),
+				'edit'		=> $this->url->link('group/edit', 'group_id='.$result_g['init_group_id'], 'SSL'),
+				'invite'	=> $this->url->link('group/invite', 'group_id='.$result_g['init_group_id'], 'SSL'),
+				'agree'		=> $this->url->link('group/invite/agree', 'group_id='.$result_g['init_group_id'], 'SSL')
+			);
+			$data['init_groups'][$result_g['init_group_id']] = array(
+				'group_id'				=> $result_g['init_group_id'],
+				'group_title'			=> $result_g['title'],
+				'group_image'			=> $image,
+				'group_customer_count' 	=> $count,
+				'action'				=> $actions
+			);
+		}
+
+		//группы где пользователь администратор
+		$results_admin_groups = $this->model_group_group->getGroupsForAdmin($customer_id);
+
+		$data['admin_init_groups'] = array();
+		foreach ($results_admin_groups as $result) {
+			$data['admin_init_groups'][] = array(
+				'group_id'	=> $result['init_group_id']
+			);
+		}
+
+		
+		//выведем приглашения в группы status = 2
+		$filter_data = array();
+		$filter_data = array(
+			'filter_customer_id'	=>	$customer_id,
+			'filter_status' 		=> 	2
+		);
+		$results_customer_invite_group = array();
+		$results_customer_invite_group = $this->model_group_group->getInviteGroups($filter_data);
+		$data['customer_invite_group'] = array();
+		foreach ($results_customer_invite_group as $result_civg) {
+			$data['customer_invite_group'][] = array(
+				'group_id'	=> $result_civg['init_group_id'],
+			);
+		}
+		
+		
+		//группы в котрых состоит пользователь, но не администратор
+		$data['customer_agree_groups'] = array();
+		$filter_data = array();
+		$filter_data = array(
+			'filter_customer_id'	=>	$customer_id,
+			'filter_status' 		=> 	1
+		);
+		$results_customer_agree_groups = array();
+		$results_customer_agree_groups = $this->model_group_group->getInviteGroups($filter_data);
+		$data['customer_agree_groups'] = array();
+		foreach ($results_customer_agree_groups as $result_cag) {
+			$data['customer_agree_groups'][] = array(
+				'group_id'	=> $result_cag['init_group_id'],
+			);
+		}
+
+		/******************* /.группы *******************/
+
+		/******************* проекты *******************/
+		$data['text_add_project'] = $this->language->get('text_add_project');
+		$data['add_project'] = $this->url->link('project/edit', '', 'SSL'); 
+
+		//информация о проектах где пользователь я вляется admin
+		$results_projects_for_customer = $this->model_project_project->getProjectsForAdmin($customer_id);
+		$data['projects_for_customer'] = array();
+		foreach ($results_projects_for_customer  as $result_pfc) {
+
+			if (!empty($result_pfc['image'])) {
+				$upload_info = $this->model_tool_upload->getUploadByCode($result_pfc['image']);
+				$filename = $upload_info['filename'];
+				$image = $this->model_tool_upload->resize($filename , 300, 300,'h');
+			} else {
+				$image = $this->model_tool_image->resize('no-image.png', 300, 300,'h');
+			}
+			$actions = array();
+			$actions = array(
+				'edit'	=>	$this->url->link('project/edit', 'project_id='.$result_pfc['project_id'], 'SSL') 
+			);
+			$data['projects_for_customer'][] = array(
+				'project_id'		=> $result_pfc['project_id'],
+				'project_title'		=> $result_pfc['title'],
+				'project_image'		=> $image,
+				'prject_action'		=> $actions
+			);
+
+		}
+		/******************* /.проекты *******************/
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/account.tpl')) {
 			$this->document->addScript('catalog/view/theme/'.$this->config->get('config_template') . '/assets/js/account.js');

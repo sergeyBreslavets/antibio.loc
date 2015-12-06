@@ -9,12 +9,12 @@ var $_result_form = $('#poll-form'),
 	var MOUSE_DOWN = 'click';
 //для блокировки постоянного нажатия и отправки ajax
 var _send = true;
-var whatmuscovite = {
+var quiz = {
 	init:function(){
 		//инициализируем опрос
-		console.log('init whatmuscovite test');
-		whatmuscovite.initBtn();
-		setTimeout(function(){whatmuscovite.wizard(1);},150);
+		console.log('init quiz test');
+		quiz.initBtn();
+		setTimeout(function(){quiz.wizard(1);},150);
 		
 	},
 	initBtn:function(){
@@ -28,7 +28,7 @@ var whatmuscovite = {
       		var question    = $(this).data('question');
 	        var answer   	= $(this).data('answer');
 	        var comment     = $(this).data('comment')
-	        whatmuscovite.initComment(step,comment);
+	        quiz.initComment(step,comment);
 	        $_result_form.append('<input type="hidden" name="answer['+ question +']" value="'+ answer +'">');
 	        
 	        if(correct){
@@ -44,7 +44,7 @@ var whatmuscovite = {
       		console.log('Нажали продолжить')
       		//получим инфу о шаге
       		var step  		= $(this).data('step');
-      		whatmuscovite.showNextStep(step);
+      		quiz.showNextStep(step);
       	});
 
       	$('.pagination-default').find('a').on(MOUSE_DOWN,function(e){
@@ -92,19 +92,19 @@ var whatmuscovite = {
 	showNextStep:function(_step){
 		if (_step+1 > count_steps_of_wizard) {
 	        _send = false;
-	        whatmuscovite.endWizard();
+	        quiz.endWizard();
       	}else{
       		$('#step_'+_step)
 				.transition({'opacity':0, x: '500px'},250,function(){
 					$(this).addClass('hidden');
-					whatmuscovite.wizard(_step+1);
+					quiz.wizard(_step+1);
 				})
 	        
       	}
 	},
 	endWizard:function(){
 		console.log('Опрос завершен');
-    	whatmuscovite.sendResult();
+    	quiz.sendResult();
 	},
 	sendResult:function(){
 	    var data = $('#poll-form').serializeArray(); 
@@ -141,7 +141,7 @@ var whatmuscovite = {
 };
 $(window).on('load', function(){
   	if($('.wizard-text').length > 0){
-	    whatmuscovite.init();
+	    quiz.init();
   	}
 });
 $(document).ready(function() {

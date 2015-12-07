@@ -75,10 +75,7 @@
                                                 <th>Название теста</th>
                                                 
                                                 <th>Осталось попыток</th>
-<<<<<<< HEAD
-         
-=======
->>>>>>> origin/master
+
                                                 <th>Результат</th>
                                                 <th class="text-center">Баллы</th>
                                                 <th class="text-right">Действия</th>

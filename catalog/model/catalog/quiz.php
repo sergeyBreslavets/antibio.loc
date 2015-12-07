@@ -253,7 +253,7 @@ class ModelCatalogQuiz extends Model {
 		return $customer_to_quiz_id;
 	}
 	public function getQuizsForCustomer($customer_id){
-		$sql = "SELECT * FROM " . DB_PREFIX . "customer_to_quiz WHERE customer_id = '" .(int)$customer_id ."'";
+		$sql = "SELECT * FROM " . DB_PREFIX . "customer_to_quiz WHERE customer_id = '" .(int)$customer_id ."' ORDER BY date_added ASC";
 
 		$query = $this->db->query($sql);
 

@@ -99,6 +99,22 @@ class ControllerAccountAccount extends Controller {
 
 		/***************** тесты и баллы *******************/
 		$this->load->model('catalog/quiz');
+		
+
+		$data['btn_start_test'] = $this->language->get('btn_start_test');
+		//подтянем список тестов которые прошел пользователь
+		
+		$results_customer_to_quiz  = $this->model_catalog_quiz->getQuizsForCustomer($customer_id);
+		$customer_to_quiz = array();
+		foreach ($results_customer_to_quiz as $vcq) {
+			$customer_to_quiz[$vcq['quiz_id']][] = array(
+				'quiz_id' 		=> $vcq['quiz_id'],
+				'customer_id'	=> $vcq['customer_id'],
+				'mark'			=> $vcq['mark'],
+				'quiz_date'		=> $vcq['date_added']
+			);
+		}
+
 		$filter_data = array();
 		$filter_data = array(
 			'filter_status' 		=> 	1
@@ -107,32 +123,94 @@ class ControllerAccountAccount extends Controller {
 		$quiz_results = $this->model_catalog_quiz->getQuizs($filter_data);
 		$quizs = array();
 		//список всех существующих тестов
+		//попыток / quiz_count_attempts - попыток котрые возможны
+
 		foreach ($quiz_results  as $result_q) {
+			
+			//подсчитаем баллы
+			//набранное количество правильных ответов
+			$quiz_correct_answer = 0;
+			//статусы /
+			//- 2 незачет - не сдала но еше есть попытки
+			//- 1 зачет 
+			//- 3 не сдал  - если закончились попытки и тест не сдан
+			//- 0 не сдавал -  еше не разу не сдавал 
+
+			$quiz_count_attempts = $result_q['quiz_count_attempts'];
+			
+			$customer_mark = 0;//количество набранных правильных ответов
+			$quiz_status = 0;
+			$quiz_status_text = 	$this->language->get('text_not_tested');
+			$quiz_balls = 0;
+			$mark_date_added		 = '';
+			$action =array();
+			$action =array(
+				'quiz_text_btn'				=> $this->language->get('text_be_tested'),
+				'quiz_view'						=> $this->url->link('information/quiz/view', 'quiz_id='.$result_q['quiz_id'], 'SSL')
+			);
+			
+			if(!empty( $customer_to_quiz[$result_q['quiz_id']] )){
+				$customer_attempts = count($customer_to_quiz[$result_q['quiz_id']]);// - количество попыток котрые уже сделал пользователь
+				$quiz_count_attempts = $quiz_count_attempts-$customer_attempts;
+				$mark_date_added		 = '';
+				$quiz_correct_answer = '';
+				//делаем проверку на количество прохождений в тесте $result_q['quiz_count_attempts']
+				//делаем проверку на макссимальноеколичество очков
+				foreach ($customer_to_quiz[$result_q['quiz_id']] as $vctq) {
+						$mark_date_added		 = '';
+					if($vctq['mark'] > $customer_mark  ){
+						$customer_mark 		= $vctq['mark'];
+						$mark_date_added	= $vctq['quiz_date'];
+						break;
+					}
+				}
+				if($result_q['quiz_correct_answer'] <= $customer_mark){
+					//прошли тест
+					$quiz_status = 1;
+					$quiz_status_text = 	$this->language->get('text_passed');
+					$quiz_balls = 5;
+					$action =array();
+				}elseif ($result_q['quiz_correct_answer'] > $customer_mark) {
+					//незачет
+					$quiz_status = 2;
+					$quiz_status_text = 	$this->language->get('text_not_passed');
+				}elseif($result_q['quiz_correct_answer'] > $customer_mark && $quiz_count_attempts == 0){
+					//провал
+					$quiz_status = 3;
+					$quiz_status_text = 	$this->language->get('text_fail');
+					$action =array();
+				}else{
+					//по умолчанию
+					$quiz_status = 0;
+					$quiz_status_text = 	$this->language->get('text_not_tested');
+					$mark_date_added = '';
+
+				}
+			}
+			
+
+
+
 
 			$data['quizs'][] = array(
-				'quiz_id'				=> $result_q['quiz_id'],
-				'quiz_correct_answer'	=> $result_q['quiz_correct_answer'],
-				'quiz_count_attempts'	=> $result_q['quiz_count_attempts'],
-				'quiz_title'		=> $result_q['title'],
-				'quiz_view'			=> $this->url->link('information/quiz/view', 'quiz_id='.$result_q['quiz_id'], 'SSL')
+				'quiz_id'							=> $result_q['quiz_id'],
+				'quiz_title'					=> $result_q['title'],
+				'quiz_correct_answer'	=> $customer_mark ,
+				'quiz_count_attempts'	=> $quiz_count_attempts,
+				'quiz_status'					=> $quiz_status,
+				'quiz_status_text'		=> $quiz_status_text,
+				'quiz_date_added'			=> $mark_date_added,
+				'quiz_balls'					=> $quiz_balls,
+				'quiz_action'					=> $action
 			);
 
 		}
+		/*print_r('<pre>');
+		print_r($data['quizs']);
+		print_r('</pre>');*/
 
-		$data['btn_start_test'] = $this->language->get('btn_start_test');
-		//подтянем список тестов которые прошел пользователь
+
 		
-		$customer_to_quiz  = $this->model_catalog_quiz->getQuizsForCustomer($customer_id);
-		$data['customer_to_quiz'] = array();
-		foreach ($customer_to_quiz as $vcq) {
-			$data['customer_to_quiz'][$vcq['quiz_id']] = array(
-				'quiz_id' 		=> $vcq['quiz_id'],
-				'customer_id'	=> $vcq['customer_id'],
-				'mark'			=> $vcq['mark'],
-				'quiz_date'		=> $vcq['date_added']
-			);
-		}
-
 		
 		//quiz_correct_answer - количество правильныхх ответов 
 

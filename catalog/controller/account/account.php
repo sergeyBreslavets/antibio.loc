@@ -109,7 +109,7 @@ class ControllerAccountAccount extends Controller {
 		//список всех существующих тестов
 		foreach ($quiz_results  as $result_q) {
 
-			$data['quizs'][] = array(
+			$quizs[] = array(
 				'quiz_id'				=> $result_q['quiz_id'],
 				'quiz_correct_answer'	=> $result_q['quiz_correct_answer'],
 				'quiz_count_attempts'	=> $result_q['quiz_count_attempts'],
@@ -137,8 +137,24 @@ class ControllerAccountAccount extends Controller {
 		//quiz_correct_answer - количество правильныхх ответов 
 
 		//quiz_count_attempts - количестов попыток
+		//пока за прохождение теста получаем по 5 балов
 
-//		$data['quizs'] = array();
+		foreach ($quizs as $vq) {
+			foreach ($data['customer_to_quiz'] as $qctq) {
+				//считаем количестов попвток
+			}
+			$data['quizs'][] = array(
+				'quiz_id'				=> $vq['quiz_id'],
+				'quiz_correct_answer'	=> $vq['quiz_correct_answer'],
+				'quiz_count_attempts'	=> $vq['quiz_count_attempts'],
+				'quiz_title'			=> $vq['quiz_title'],
+				'quiz_view'				=> $vq['quiz_view'],
+				'quiz_status'			=> '',
+				'quiz_ball'				=> 5				
+			);
+			
+		}
+
 
 
 

@@ -75,21 +75,27 @@
                                                 <th>Название теста</th>
                                                 
                                                 <th>Осталось попыток</th>
-                                                <th>Дата</th>
+<<<<<<< HEAD
+         
+=======
+>>>>>>> origin/master
                                                 <th>Результат</th>
-                                                <th>Баллы</th>
-                                                <th>Действия</th>
+                                                <th class="text-center">Баллы</th>
+                                                <th class="text-right">Действия</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php foreach ($quizs as $qv) { ?>
                                                <tr>
                                                     <td><?php echo $qv['quiz_title']; ?></td>
-                                                    <td>0</td>
-                                                    <td>27-11-2015</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><a href="<?php echo $qv['quiz_view']; ?>" class="btn btn-b-base"><?php echo $btn_start_test; ?></a></td>
+                                                    <td class="text-center"><?php echo $qv['quiz_count_attempts']; ?></td>
+                                                    <td><strong><?php echo $qv['quiz_status_text']; ?></strong></td>
+                                                    <td class="text-center"><strong><?php echo ($qv['quiz_balls'] > 0)?$qv['quiz_balls']:''; ?></strong></span></td>
+                                                    <td>
+                                                    <?php if(!empty($qv['quiz_action'])){ ?>
+                                                        <a href="<?php echo $qv['quiz_action']['quiz_view']; ?>" class="btn btn-b-base btn-block"><?php echo $qv['quiz_action']['quiz_text_btn']; ?></a>
+                                                    <?php } ?>
+                                                    </td>
                                                 </tr> 
                                             <?php }?>
                                             
@@ -97,12 +103,12 @@
 
 
                                             <tr>
-                                                <td colspan="4" class="text-right">Промокоды</td>
+                                                <td colspan="3" class="text-right">Промокоды</td>
                                                 <td>5</td>
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" class="text-right"><strong>Ваш результат</strong></td>
+                                                <td colspan="3" class="text-right"><strong>Ваш результат</strong></td>
                                                 <td>5</td>
                                                 <td></td>
                                             </tr>

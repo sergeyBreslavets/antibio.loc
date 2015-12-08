@@ -108,6 +108,7 @@
                 <div role="tabpanel" class="tab-pane" id="tab-data">
                   <div class="card-body card-padding">
                     <div class="row">
+                      <div class="col-sm-6">
                       <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-image"><?php echo $entry_image; ?></label>
                         <div class="col-sm-10">
@@ -116,9 +117,23 @@
                           </a>
                           <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
                         </div>
-                      </div>   
+                      </div>  
+                      </div>
+                       <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="control-label" for="place_date">Дата мероприятия</label>
+                          <div class="controls row">
+                            <div class="input-group date col-sm-3">
+                              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                              <input type="text" class="form-control date-picker" id="place_date" name="place_date" value="<?php echo $place_date; ?>">
+                            </div> 
+                          </div>
+                        </div>
+
+                      </div>  
                     </div>
                     <div class="row">
+                       
                       <div class="col-sm-6">
                         <div class="form-group <?php if ($error_keyword) { ?> has-error <?php } ?>">
                           <div class="fg-line">
@@ -130,7 +145,7 @@
                           <?php } ?>
                         </div><!--/.form-group-->
                       </div>
-                      <div class="col-sm-6">
+                      <div class="col-sm-6 hidden">
                         <div class="form-group">
                           <div class="fg-line">
                               <label class="control-label" for="input-latitude_longitude"><?php echo $entry_latitude_longitude; ?></label>
@@ -139,7 +154,7 @@
                         </div><!--/.form-group-->
                       </div>
 
-                      <div class="col-sm-6">
+                      <div class="col-sm-6 hidden">
                         <div class="form-group">
                           <div class="fg-line">
                             <label class="control-label" for="input-metro_id"><?php echo $entry_metro; ?></label>

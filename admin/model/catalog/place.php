@@ -1,11 +1,12 @@
 <?php
-class ModelCatalogPlace extends Model {
+class ModelCatalogPlace extends Model { 
 	public function addPlace($data) {
 		$this->event->trigger('pre.admin.place.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "place SET 
 			image = '" . $this->db->escape($data['image']) . "',
 			metro_id = '" . (int)$data['metro_id'] . "',
+			place_date = '" . $this->db->escape($data['place_date']) . "',
 			latitude_longitude = '" . $this->db->escape($data['latitude_longitude']) . "',
 			visibility = '" . (int)$data['visibility'] . "',
 			status = '" . (int)$data['status'] . "',
@@ -66,6 +67,7 @@ class ModelCatalogPlace extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "place SET 
 			image = '" . $this->db->escape($data['image']) . "',
 			metro_id = '" . (int)$data['metro_id'] . "',
+			place_date = '" . $this->db->escape($data['place_date']) . "',
 			latitude_longitude = '" . $this->db->escape($data['latitude_longitude']) . "',
 			visibility = '" . (int)$data['visibility'] . "',
 			status = '" . (int)$data['status'] . "'

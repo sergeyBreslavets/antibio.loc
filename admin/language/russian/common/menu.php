@@ -108,7 +108,7 @@ $_['text_occasion']                    = 'Игры';
 $_['text_contest']                     = 'Конкурсы';
 $_['text_customer_stats']              = 'Статистика';
 $_['text_occasion_group']              = 'Формат игр';
-$_['text_place']          	           = 'Местонахождение';
+$_['text_place']          	           = 'Мероприятия';
 $_['text_occasion_record']             = 'Запись на игру';
 
 $_['text_age_status']                  = 'Возрастные группы';
@@ -122,6 +122,7 @@ $_['text_category_request']            = 'Категории полей заяв
 $_['text_quiz']            = 'Тесты';
 $_['text_qitem']            = 'Вопросы к тестам';
 $_['text_icategory']            = 'Категории';
+$_['text_promocode']            = 'Промокоды';
 
 
 

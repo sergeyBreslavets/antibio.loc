@@ -99,14 +99,14 @@
                                             <?php ?>
 
 
-                                            <tr>
+                                            <tr class="hidden">
                                                 <td colspan="3" class="text-right">Промокоды</td>
-                                                <td>5</td>
+                                                <td></td>
                                                 <td></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-right"><strong>Ваш результат</strong></td>
-                                                <td>5</td>
+                                               <td class="text-center"><strong><?php echo $total; ?></strong></td>
                                                 <td></td>
                                             </tr>
 

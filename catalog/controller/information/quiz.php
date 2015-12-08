@@ -119,15 +119,12 @@ class ControllerInformationQuiz extends Controller {
 		if(!$this->customer->isLogged()){
 			$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 		}
-		$customer_id = $this->customer->getId();
-		//узнаем сколько раз проходил тест пользователь
-		$filter_data = array();
-		$filter_data = array(
-			'filter_customer_id' 		=> 	$customer_id,
-			'filter_quiz_id'			=>	$quiz_id
 
-		);
-		$customer_to_quiz  = $this->model_catalog_quiz->getQuizsForCustomer($filter_data);
+		$customer_id = $this->customer->getId();
+		
+		//узнаем сколько раз проходил тест пользователь
+		
+		$customer_to_quiz  = $this->model_catalog_quiz->getQuizsForCustomer($customer_id);
 		$data['customer_to_quiz'] = array();
 		foreach ($customer_to_quiz as $vcq) {
 			$data['customer_to_quiz'][$vcq['quiz_id']] = array(
@@ -137,6 +134,14 @@ class ControllerInformationQuiz extends Controller {
 				'quiz_date'		=> $vcq['date_added']
 			);
 		}
+		
+
+		//количесво попыток пройти тест
+		$quiz_count_attempts =  $quiz_info['quiz_count_attempts'];
+		if($quiz_count_attempts < count($data['customer_to_quiz'][$quiz_id])){
+			$this->response->redirect($this->url->link('account/account', '', 'SSL'));
+		}
+
 	    //seo 
 	    $this->document->setTitle($quiz_info['meta_title']);
 	    $this->document->setDescription($quiz_info['meta_description']);
@@ -205,7 +210,7 @@ class ControllerInformationQuiz extends Controller {
 		    $count_arr = count($array_answer);
 		    //добавить сравнение
 		    foreach ($array_answer as $k => $result) {
-		      if($standard_data_answer[$k] == $result){
+		      if(!empty($standard_data_answer[$k]) && $standard_data_answer[$k] == $result){
 		         $arr_count_yes++;
 		      }
 		    }

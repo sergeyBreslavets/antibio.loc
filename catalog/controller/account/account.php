@@ -124,7 +124,7 @@ class ControllerAccountAccount extends Controller {
 		$quizs = array();
 		//список всех существующих тестов
 		//попыток / quiz_count_attempts - попыток котрые возможны
-
+		$total = 0;
 		foreach ($quiz_results  as $result_q) {
 			
 			//подсчитаем баллы
@@ -161,16 +161,18 @@ class ControllerAccountAccount extends Controller {
 					if($vctq['mark'] > $customer_mark  ){
 						$customer_mark 		= $vctq['mark'];
 						$mark_date_added	= $vctq['quiz_date'];
-						break;
+						
 					}
 				}
+				
 				if($result_q['quiz_correct_answer'] <= $customer_mark){
 					//прошли тест
 					$quiz_status = 1;
 					$quiz_status_text = 	$this->language->get('text_passed');
 					$quiz_balls = 5;
-					$action =array();
-				}elseif ($result_q['quiz_correct_answer'] > $customer_mark) {
+					$action 	=	array();
+					$total = $total + $quiz_balls;
+				}elseif ($result_q['quiz_correct_answer'] > $customer_mark && $quiz_count_attempts > 0) {
 					//незачет
 					$quiz_status = 2;
 					$quiz_status_text = 	$this->language->get('text_not_passed');
@@ -178,7 +180,7 @@ class ControllerAccountAccount extends Controller {
 					//провал
 					$quiz_status = 3;
 					$quiz_status_text = 	$this->language->get('text_fail');
-					$action =array();
+					$action 	=	array();
 				}else{
 					//по умолчанию
 					$quiz_status = 0;
@@ -186,54 +188,36 @@ class ControllerAccountAccount extends Controller {
 					$mark_date_added = '';
 
 				}
+				
 			}
-			
 
 
 
 
 
 			$data['quizs'][] = array(
-				'quiz_id'							=> $result_q['quiz_id'],
-				'quiz_title'					=> $result_q['title'],
+				'quiz_id'				=> $result_q['quiz_id'],
+				'quiz_title'			=> $result_q['title'],
 				'quiz_correct_answer'	=> $customer_mark ,
 				'quiz_count_attempts'	=> $quiz_count_attempts,
-				'quiz_status'					=> $quiz_status,
+				'quiz_status'			=> $quiz_status,
 				'quiz_status_text'		=> $quiz_status_text,
-				'quiz_date_added'			=> $mark_date_added,
-				'quiz_balls'					=> $quiz_balls,
-				'quiz_action'					=> $action
+				'quiz_date_added'		=> $mark_date_added,
+				'quiz_balls'			=> $quiz_balls,
+				'quiz_action'			=> $action
 
 			);
 
+
+
 		}
-		/*print_r('<pre>');
-		print_r($data['quizs']);
-		print_r('</pre>');*/
-
-
-		
 		
 		//quiz_correct_answer - количество правильныхх ответов 
 
 		//quiz_count_attempts - количестов попыток
 		//пока за прохождение теста получаем по 5 балов
 
-		foreach ($quizs as $vq) {
-			foreach ($data['customer_to_quiz'] as $qctq) {
-				//считаем количестов попвток
-			}
-			$data['quizs'][] = array(
-				'quiz_id'				=> $vq['quiz_id'],
-				'quiz_correct_answer'	=> $vq['quiz_correct_answer'],
-				'quiz_count_attempts'	=> $vq['quiz_count_attempts'],
-				'quiz_title'			=> $vq['quiz_title'],
-				'quiz_view'				=> $vq['quiz_view'],
-				'quiz_status'			=> '',
-				'quiz_ball'				=> 5				
-			);
-			
-		}
+		$data['total']	= $total;
 
 
 

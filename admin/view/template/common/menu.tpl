@@ -20,12 +20,13 @@
      
       <li><a href="<?php echo $icategory; ?>"><?php echo $text_icategory; ?></a></li>
       <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
+       <li><a href="<?php echo $place; ?>"><?php echo $text_place; ?></a></li>
       <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?> </a></li>
       <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>  
       <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
       <li><a href="<?php echo $quiz; ?>"><?php echo $text_quiz; ?></a></li>
       <li><a href="<?php echo $qitem; ?>"><?php echo $text_qitem; ?></a></li>
-      <li class="hidden"><a href="<?php echo $occasion_group; ?>"><?php echo $text_occasion_group; ?> </a></li>
+       <li><a href="<?php echo $promocode; ?>"><?php echo $text_promocode; ?></a></li>
     </ul>
   </li>
   <li class="sub-menu">

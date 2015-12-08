@@ -532,6 +532,17 @@ class ControllerCatalogPlace extends Controller {
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100,'h');
 //********************* /.list-view-place **********************/	
+
+		if (isset($this->request->post['place_date'])) {
+			$data['place_date'] = $this->request->post['place_date'];
+		} elseif (!empty($place_info)) {
+			$data['place_date'] =  date('Y-m-d', strtotime($place_info['place_date']));
+		} else {
+			$data['place_date'] = date('Y-m-d', time() - 86400);
+		}
+
+
+		
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

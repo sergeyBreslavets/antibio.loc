@@ -1,6 +1,6 @@
 <?php
 $_['heading_title'] = '%s ( метро: %s)';
-$_['heading_title_places'] = 'Список полей для игр';
+$_['heading_title_places'] = 'Календарь событий';
 // Text
 $_['text_error'] = 'Информационная страница не найдена!';
 //Text

@@ -66,6 +66,7 @@ class ControllerCommonHeader extends Controller {
 		$data['text_partners'] 		= $this->language->get('text_partners');
 		$data['text_about_us'] 		= $this->language->get('text_about_us');
 		$data['text_news'] 			= $this->language->get('text_news');
+		$data['text_places'] 			= $this->language->get('text_places');
 		$data['text_announcement']  = $this->language->get('text_announcement');
 		$data['text_materials']  	= $this->language->get('text_materials');
 		$data['text_faq']  			= $this->language->get('text_faq');
@@ -91,6 +92,7 @@ class ControllerCommonHeader extends Controller {
 		$data['contests'] = $this->url->link('contest/contest', '', 'SSL');
 		$data['materials'] = $this->url->link('material/material', '', 'SSL');
 		$data['news'] = $this->url->link('information/news', '', 'SSL');
+		$data['places'] = $this->url->link('information/place', '', 'SSL');
 		//надо сделать автоматический подсос
 		$data['about_us'] = $this->url->link('information/information', 'information_id=8', 'SSL');
 

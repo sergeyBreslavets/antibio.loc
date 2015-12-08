@@ -22,9 +22,10 @@ $_['text_about']         = 'О портале';
 $_['text_projects']      = 'Проекты';
 $_['text_partners']      = 'Организаторы';
 $_['text_about_us']      = 'О нас';
-$_['text_news']      	 = 'Новости портала';
+$_['text_news']      	    = 'Интересно';
 $_['text_announcement']  = 'Анонсы';
 $_['text_contest']       = 'Конкурсы';
 $_['text_materials']     = 'Ресурсы';
 $_['text_faq']     	     = 'Вопросы и ответы';
+$_['text_places']        = 'Календарь';
 

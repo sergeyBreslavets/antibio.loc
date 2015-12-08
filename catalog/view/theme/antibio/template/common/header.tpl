@@ -75,8 +75,8 @@
                     <? } ?>
                     
 
-                    <li class="hidden"><a href="">Календарь</a></li>
-                    <li><a href="/list-news">Интересно</a></li>
+                    <li ><a href="<?php echo $places; ?>"><?php echo $text_places; ?></a></li>
+                    <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
                     <?php if ($logged) { ?>
                       <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
                       <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>

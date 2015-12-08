@@ -12,17 +12,6 @@ class ControllerInformationPlace extends Controller {
 		$filter_data = array(
 			'filter_status'    => 1
 		);
-		$main_image_path = 'catalog/places/main.jpg';
-		
-		if (is_file(DIR_IMAGE . $main_image_path)) {
-		//if ( is_file(DIR_IMAGE . 'catalog/'. $main_image_path) ) {
-			$data['main_image']= $this->model_tool_image->resize($main_image_path, 1920,1280,'w');
-		
-		}else {
-			$data['main_image'] = $this->model_tool_image->resize('placeholder.png', 1920,1280,'w');
-		}
-
-
 		$places = $this->model_catalog_place->getPlaces($filter_data);
 		$data['places'] = array();
 		foreach ($places as $place) {
@@ -34,7 +23,6 @@ class ControllerInformationPlace extends Controller {
 			$data['places'][] = array(
 				'place_id' => $place['place_id'],
 				'place_title' => $place['title'],
-				'place_metro_id' => $place['metro_id'],
 				'image' => $image,
 				'place_href'  => $this->url->link('information/place/view', 'place_id=' . $place['place_id'])
 			);
@@ -54,6 +42,8 @@ class ControllerInformationPlace extends Controller {
 		}
 
 	}
+
+
 	public function view(){
 		if (isset($this->request->get['place_id'])) {
 			$place_id = (int)$this->request->get['place_id'];
@@ -115,7 +105,7 @@ class ControllerInformationPlace extends Controller {
 		}else{
 			$data['hero_image'] = $this->model_tool_image->resize('placeholder.png', 1920,1280,'w');
 		}
-		$data['heading_title'] = sprintf($this->language->get('heading_title'), $place_info['title'], $metro['name']); 
+		$data['heading_title'] = $place_info['title']; 
 		$data['text_description_heading'] = $this->language->get('text_description_heading');
 		$data['text_photo_place'] = $this->language->get('text_photo_place');
 		$data['text_description_place'] = $this->language->get('text_description_place');

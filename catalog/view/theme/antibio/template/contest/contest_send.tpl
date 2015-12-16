@@ -121,6 +121,7 @@
               <?php } ?>
             <?php } ?>
             <hr class="divider-w mt-10 mb-20">
+           
             <div class="row">
               <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -128,6 +129,7 @@
                 </div>
               </div>  
             </div> 
+
             </form>
           </div>
         </div>

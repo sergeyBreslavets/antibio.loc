@@ -44,6 +44,9 @@
                   </div>
 
                  <div class="row multi-columns-row">
+                   <form action="" class="sky-form">
+                  <div id="filter_date_in"></div>
+                  </form>
                    <?php if(!empty($places)) { ?>
                     <?php foreach ($places as $place) { ?>
                       <div class="col-md-6">

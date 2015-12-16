@@ -50,9 +50,12 @@
             </div>
             <div class="row">
               <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-pcode">Промокод</label>
+                <label class="col-sm-2 control-label" for="input-promocode">Промокод</label>
                 <div class="col-sm-8">
-                  <input type="text" name="pcode" value=""  id="input-pcode" class="form-control" />
+                  <input type="text" name="promocode" value="<?php echo $promocode; ?>"  id="input-promocode" class="form-control" />
+                  <?php if ($error_promocode) { ?>
+                    <div class="text-danger"><?php echo $error_promocode; ?></div>
+                  <?php } ?>
                 </div>
               </div>
             </div>

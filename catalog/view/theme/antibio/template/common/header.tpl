@@ -28,6 +28,7 @@
 
     <!-- Boomerang styles -->
     <link id="wpStylesheet" type="text/css" href="catalog/view/theme/antibio/assets/css/global-style.css" rel="stylesheet" media="screen"> 
+     <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/jquery-ui.css">  
     <?php foreach ($styles as $style) { ?>
     <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
     <?php } ?>
@@ -63,7 +64,7 @@
                     <li><a href="about_us">О проекте</a></li>
                     
                     <?php if (!empty($icategories)) { ?>
-                      <li class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Лекции и вебинары</a>
                         <ul class="dropdown-menu">
                             <?php foreach ($icategories as $ic) { ?>
@@ -75,7 +76,7 @@
                     <? } ?>
                     
 
-                    <li ><a href="<?php echo $places; ?>"><?php echo $text_places; ?></a></li>
+                 <!--   <li ><a href="<?php echo $places; ?>"><?php echo $text_places; ?></a></li> -->
                     <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
                     <?php if ($logged) { ?>
                       <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>

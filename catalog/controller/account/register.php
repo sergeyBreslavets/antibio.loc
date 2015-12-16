@@ -125,6 +125,12 @@ class ControllerAccountRegister extends Controller {
 			$data['error_email'] = '';
 		}
 
+		if (isset($this->error['promocode'])) {
+			$data['error_promocode'] = $this->error['promocode'];
+		} else {
+			$data['error_promocode'] = '';
+		}
+
 		if (isset($this->error['telephone'])) {
 			$data['error_telephone'] = $this->error['telephone'];
 		} else {
@@ -219,12 +225,19 @@ class ControllerAccountRegister extends Controller {
 			$data['email'] = '';
 		}
 
+		if (isset($this->request->post['promocode'])) {
+			$data['promocode'] = $this->request->post['promocode'];
+		} else {
+			$data['promocode'] = '';
+		}
+
 		if (isset($this->request->post['telephone'])) {
 			$data['telephone'] = $this->request->post['telephone'];
 		} else {
 			$data['telephone'] = '';
 		}
 
+		
 		if (isset($this->request->post['fax'])) {
 			$data['fax'] = $this->request->post['fax'];
 		} else {
@@ -375,6 +388,21 @@ class ControllerAccountRegister extends Controller {
 		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_exists');
 		}
+		
+		if(!empty(  $this->request->post['promocode'])  ){
+			//подгрузим модель промокодов
+			$this->load->model('account/promocode');
+			//проверка на длину
+			$promocode_info = $this->model_account_promocode->getPromocodeDescription($this->request->post['promocode']);
+
+			if (empty($promocode_info) || $promocode_info['status'] == 0) {
+				$this->error['promocode'] = $this->language->get('error_promocode');
+			}
+
+		}
+		
+
+
 		/*
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');

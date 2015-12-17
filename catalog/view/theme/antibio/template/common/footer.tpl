@@ -6,11 +6,9 @@
                     <div class="col">
                        <h4>Контактная информация</h4>
                        <ul>
-                            <li>Москва - ул Вавилова 3</li>
-                            <li>Phone: +7 724 1234 567 </li>
-                            <li>Email: <a href="mailto:hello@.com" title="Email Us">hello@example.com</a></li>
-                            <li>Skype: <a href="skype:my.business?call" title="Skype us">antioniotic.club</a></li>
-                            <li></li>
+                            <li>129825, Москва, ул.Годовикова, д.9, стр.3, офис 5.13</li>
+                            <li>Телефон: +7 (495) 543-98-58 </li>
+                            <li>E-mail: <a href="mailto:contact@antibiotik.pro" >contact@antibiotik.pro</a></li>
                         </ul>
                      </div>
                 </div>
@@ -37,10 +35,6 @@
                         <a href="#"><i class="fa fa-google-plus"></i></a>
                         <a href="#"><i class="fa fa-linkedin"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-skype"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        <a href="#"><i class="fa fa-flickr"></i></a>
                     </div>
                 </div>
 
@@ -60,7 +54,7 @@
             
             <div class="row">
                 <div class="col-lg-9 copyright">
-                    2015 © antibiotic.club. Все права защищены 
+                    2015&nbsp;&copy; antibiotic.pro. Все права защищены
                 </div>
                 <div class="col-lg-3">
                 </div>

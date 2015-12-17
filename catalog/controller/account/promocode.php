@@ -2,13 +2,25 @@
 class ControllerAccountPromocode extends Controller {
 	const CODE_LENGTH = 8;
 	public function index(){
-		print_r('<pre>');
-		print_r('expression');
-		print_r('</pre>');
-		for ($i=0; $i < 10; $i++) { 
-			print_r('<pre>');
-			print_r($this->_createCode());
-			print_r('</pre>');
+		$this->load->model('account/promocode');
+	//	for ($i=0; $i < 5000; $i++) { 
+			
+			//$promocode = $this->_createCode();
+		//	print_r('<pre>');
+		//	print_r($promocode);
+		//	print_r('</pre>');
+			//$promocode_info = $this->model_account_promocode->getPromocodeDescription($promocode);
+			//if (empty($promocode_info)) {
+			//	$this->model_account_promocode->addPromocode($promocode);
+			//}
+			
+	//	}
+
+		$promocode_results = $this->model_account_promocode->getPromocodes();
+		foreach ($promocode_results as $value) {
+		//	print_r('<pre>');
+			print_r($value['promocode_id'].'<br>');
+		//	print_r('</pre>');
 		}
 	}
 
@@ -21,6 +33,14 @@ class ControllerAccountPromocode extends Controller {
             $code .= $chars[rand(0, count($chars) - 1)];
         }*/
         $code = substr(md5(microtime()), rand(0,99), self::CODE_LENGTH);
+
+        $max = ceil(self::CODE_LENGTH / 32);
+		$random = '';
+		for ($i = 0; $i < $max; $i ++) {
+		$random .= md5(microtime(true).mt_rand(10000,90000));
+		}
+		$code =  substr($random, 0, self::CODE_LENGTH);
+
         return $code;
     }
 }

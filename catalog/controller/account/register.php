@@ -11,26 +11,20 @@ class ControllerAccountRegister extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-	/*	$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/moment.js');
-		$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js');
-		$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
-	*/	
-		$this->load->model('tool/image');
-		$main_image_path = 'catalog/default/registration.jpg';
-		if (is_file(DIR_IMAGE . $main_image_path)) {
-			$data['main_image']= $this->model_tool_image->resize($main_image_path, 1920,1280,'h');
-		}else {
-			$data['main_image'] = $this->model_tool_image->resize('placeholder.png', 1920,1280,'h');
-		}
-
-
-
+		$this->document->addScript('catalog/view/javascript/bower_components/moment/min/moment.min.js');
+		$this->document->addScript('catalog/view/javascript/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js');
+		$this->document->addStyle('catalog/view/javascript/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css');
+	
+		$this->document->addScript('catalog/view/javascript/register.js');
 
 		$this->load->model('account/customer');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
-
+			if(!empty($this->request->post['promocode'])){
+				$this->load->model('account/promocode');
+				$promocode_id = $this->model_account_promocode->activatePromocode($this->request->post['promocode'],$customer_id);
+			}
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
 			
@@ -376,11 +370,11 @@ class ControllerAccountRegister extends Controller {
 		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
-		/*
+		
 		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
-		*/
+		
 		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
@@ -394,8 +388,8 @@ class ControllerAccountRegister extends Controller {
 			$this->load->model('account/promocode');
 			//проверка на длину
 			$promocode_info = $this->model_account_promocode->getPromocodeDescription($this->request->post['promocode']);
-
-			if (empty($promocode_info) || $promocode_info['status'] == 0) {
+			
+			if (empty($promocode_info) || (!empty($promocode_info) && $promocode_info['status'] == 0) ) {
 				$this->error['promocode'] = $this->language->get('error_promocode');
 			}
 

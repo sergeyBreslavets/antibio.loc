@@ -38,6 +38,8 @@ class ModelAccountCustomer extends Model {
 			approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");
 	
 		$customer_id = $this->db->getLastId();
+
+		
 /*
 		$this->db->query("INSERT INTO " . DB_PREFIX . "address SET 
 			customer_id = '" . (int)$customer_id . "', 

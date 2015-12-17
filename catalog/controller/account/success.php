@@ -3,7 +3,7 @@ class ControllerAccountSuccess extends Controller {
 	public function index() {
 		//удачная регистрация
 		$this->load->language('account/success');
-
+		$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$data['breadcrumbs'] = array();
@@ -30,9 +30,11 @@ class ControllerAccountSuccess extends Controller {
 		$customer_group_info = $this->model_account_customer_group->getCustomerGroup($this->config->get('config_customer_group_id'));
 
 		if ($customer_group_info && !$customer_group_info['approval']) {
-			$data['text_message'] = sprintf($this->language->get('text_message'), $this->url->link('information/contact'));
+			//$data['text_message'] = sprintf($this->language->get('text_message'), $this->url->link('information/contact'));
+			$data['text_message'] = $this->language->get('text_message');
 		} else {
-			$data['text_message'] = sprintf($this->language->get('text_approval'), $this->config->get('config_name'), $this->url->link('information/contact'));
+			//$data['text_message'] = sprintf($this->language->get('text_approval'), $this->config->get('config_name'), $this->url->link('information/contact'));
+			$data['text_message'] = $this->language->get('text_message');
 		}
 
 

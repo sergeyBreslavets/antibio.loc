@@ -47,7 +47,7 @@ class ControllerInformationQuiz extends Controller {
 		$this->document->setTitle($data['heading_title']);
 		$this->document->setDescription($this->language->get('heading_description'));
 		$this->document->setKeywords($this->language->get('heading_keywords'));
-		//получим список аветивных рейтингов
+		//получим список активных рейтингов
 		$filter_data = array(
 			'filter_status'    => 1,
 			'filter_visibility'    => 1
@@ -138,7 +138,8 @@ class ControllerInformationQuiz extends Controller {
 
 		//количесво попыток пройти тест
 		$quiz_count_attempts =  $quiz_info['quiz_count_attempts'];
-		if($quiz_count_attempts < count($data['customer_to_quiz'][$quiz_id])){
+		$count_req_quiz = (!empty($data['customer_to_quiz'][$quiz_id]))?count($data['customer_to_quiz'][$quiz_id]):0;
+		if($quiz_count_attempts < $count_req_quiz){
 			$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 		}
 

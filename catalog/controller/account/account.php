@@ -217,13 +217,22 @@ class ControllerAccountAccount extends Controller {
 		//quiz_count_attempts - количестов попыток
 		//пока за прохождение теста получаем по 5 балов
 
-		$data['total']	= $total;
+		
 
 
 
+		//подсчитаем баллы за промокоды
+		$this->load->model('account/promocode');
+		
+		$filter_data = array();
+		$filter_data = array(
+			'filter_customer_id' 		=> 	$customer_id
+		);
+		$results_promocode = $this->model_account_promocode->getPromocodes($filter_data);
+		//за каждый код прибавляем 10 баллов
+		$data['promocode'] = count($results_promocode)*10;
 
-
-
+		$data['total']	= $total + $data['promocode'];
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/account.tpl')) {
 			$this->document->addScript('catalog/view/theme/'.$this->config->get('config_template') . '/assets/js/account.js');
 		} else {

@@ -140,7 +140,7 @@ class ControllerInformationQuiz extends Controller {
 		$quiz_count_attempts =  $quiz_info['quiz_count_attempts'];
 		$count_req_quiz = (!empty($data['customer_to_quiz'][$quiz_id]))?count($data['customer_to_quiz'][$quiz_id]):0;
 		if($quiz_count_attempts < $count_req_quiz){
-			$this->response->redirect($this->url->link('account/account', '', 'SSL'));
+			//$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 		}
 
 	    //seo 

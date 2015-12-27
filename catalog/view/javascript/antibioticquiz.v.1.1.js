@@ -30,12 +30,12 @@ var quiz = {
 	        var comment     = $(this).data('comment')
 	        quiz.initComment(step,comment);
 	        $_result_form.append('<input type="hidden" name="answer['+ question +']" value="'+ answer +'">');
-	        
-	        if(correct){
+	        $('#pstep_'+step).attr('class', '').removeClass('active')
+	       /* if(correct){
 	        	$('#pstep_'+step).attr('class', '').removeClass('active').addClass('correct');
 	        }else{
 	        	$('#pstep_'+step).attr('class', '').removeClass('active').addClass('no-correct');
-	        }
+	        }*/
 	        
       	});
 
@@ -84,6 +84,13 @@ var quiz = {
 			.addClass('active');
 		//for mobile
 		$('.mobile-pagination').find('.active').html(_step);
+		//подстроем одинаквую высотублоков
+	      var heights = $('#step_'+_step).find('.wizard-btn-answer').map(function (){
+	          return $(this).height();
+	      }).get(),
+	      maxHeight = Math.max.apply(null, heights);
+	      $('#step_'+_step).find('.wizard-btn-answer').height(maxHeight);//css({'height':maxHeight});
+
 		//сформируем текст кнопки
 		if (_step = count_steps_of_wizard) {
 			$('#step_'+_step).find('.wizard-btn-next-step').html('Получить результат');

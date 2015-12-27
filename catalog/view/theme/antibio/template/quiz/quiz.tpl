@@ -44,7 +44,7 @@
                   <div class="post-content">
                       <h2 class="post-title">Тест по теме Инфекции Верхних Дыхательных Путей</h2>
                       <div class="row wizard-text">
-                          <div class="col-sm-12 text-center hidden-xs">
+                          <div class="col-sm-12 text-center ">
                               <ul class="pagination text-center pagination-default">
                                 <?php $i = 1; ?> 
                                 <?php foreach ($step_questions as $step) { ?>
@@ -74,7 +74,9 @@
                                     </div>
                                     <?php $j++; ?>
                                   <?php } ?>
+                                    
                                   </div>
+                                  <div class="clearfix"></div>
                                 </div>
                                 <div class="module-comment">
                                   <div class="module-comment__block">

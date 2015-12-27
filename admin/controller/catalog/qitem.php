@@ -636,7 +636,7 @@ class ControllerCatalogQitem extends Controller {
     }
 
     foreach ($this->request->post['qitem_description'] as $language_id => $value) {
-      if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 255)) {
+      if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 500)) {
         $this->error['title'][$language_id] = $this->language->get('error_title');
       }
 

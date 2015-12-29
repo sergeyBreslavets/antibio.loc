@@ -1,1 +1,0 @@
-INSERT INTO `casejoke_antibio`.`oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES (NULL, 'information/place', 'list-places');

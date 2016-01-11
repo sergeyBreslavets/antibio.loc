@@ -41,15 +41,17 @@
                 <div class="<?php echo $class; ?>">
                   <div class="row">
                     <div class="col-sm-12">
-                        <div class="post-item">
-                          <div class="post-content">
-                              <h1 class="post-title"><?php echo $heading_title; ?></h1>
+                      <div class="post-item">
+                        <div class="post-content">
+                            <h1 class="section-title left"><?php echo $heading_title; ?></h1>
+                            <?php if (!empty($description)) { ?>
                               <div class="post-desc">
                                <?php echo $description; ?>
                               </div>
-                          </div>
+                            <?php } ?>
                         </div>
-                          <hr>
+                        </div>
+                      <hr>
                       </div>
                   </div>
                   <?php if(!empty($informations)){ ?> 

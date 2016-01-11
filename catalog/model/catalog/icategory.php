@@ -18,16 +18,15 @@ class ModelCatalogIcategory extends Model {
 		}
 	}
 	public function getIcategorys($data = array()) {
-		if ($data) {
 			$sql = "SELECT * FROM " . DB_PREFIX . "icategory i LEFT JOIN " . DB_PREFIX . "icategory_description id ON (i.icategory_id = id.icategory_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 
-		if (isset($data['filter_parent']) && !is_null($data['filter_parent'])) {
-			$sql .= " AND i.parent_id = '" . (int)$data['filter_parent'] . "'";
-		}
-		if (isset($data['filter_top']) && !is_null($data['filter_top'])) {
-			$sql .= " AND i.bottom = '" . (int)$data['filter_top'] . "'";
-		}
+			if (isset($data['filter_parent']) && !is_null($data['filter_parent'])) {
+				$sql .= " AND i.parent_id = '" . (int)$data['filter_parent'] . "'";
+			}
+			if (isset($data['filter_top']) && !is_null($data['filter_top'])) {
+				$sql .= " AND i.bottom = '" . (int)$data['filter_top'] . "'";
+			}
 
 
 
@@ -43,10 +42,10 @@ class ModelCatalogIcategory extends Model {
 				$sql .= " ORDER BY i.sort_order";
 			}
 
-			if (isset($data['order']) && ($data['order'] == 'DESC')) {
-				$sql .= " DESC";
-			} else {
+			if (isset($data['order']) && ($data['order'] == 'ASC')) {
 				$sql .= " ASC";
+			} else {
+				$sql .= " DESC";
 			}
 
 			if (isset($data['start']) || isset($data['limit'])) {
@@ -64,18 +63,6 @@ class ModelCatalogIcategory extends Model {
 			$query = $this->db->query($sql);
 
 			return $query->rows;
-		} else {
-			$icategory_data = $this->cache->get('icategory.' . (int)$this->config->get('config_language_id'));
-
-			if (!$icategory_data) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "icategory i LEFT JOIN " . DB_PREFIX . "icategory_description id ON (i.icategory_id = id.icategory_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY id.title");
-
-				$icategory_data = $query->rows;
-
-				$this->cache->set('icategory.' . (int)$this->config->get('config_language_id'), $icategory_data);
-			}
-
-			return $icategory_data;
-		}
+		
 	}
 }

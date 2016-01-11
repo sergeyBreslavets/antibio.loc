@@ -292,10 +292,15 @@ class ControllerCatalogInformation extends Controller {
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
+		$data['button_remove'] = $this->language->get('button_remove');
 
 		$data['tab_general'] = $this->language->get('tab_general');
 		$data['tab_data'] = $this->language->get('tab_data');
 		$data['tab_design'] = $this->language->get('tab_design');
+		$data['tab_files'] = $this->language->get('tab_files');
+
+		$data['text_none'] = $this->language->get('text_none');
+		$data['button_add'] = $this->language->get('button_add');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -492,6 +497,27 @@ class ControllerCatalogInformation extends Controller {
 			$data['information_layout'] = $this->model_catalog_information->getInformationLayouts($this->request->get['information_id']);
 		} else {
 			$data['information_layout'] = array();
+		}
+
+
+		//привязка файликов
+		if (isset($this->request->post['information_to_download'])) {
+			$data['information_to_download'] = $this->request->post['information_to_download'];
+		} elseif (isset($this->request->get['information_id'])) {
+			$data['information_to_download'] = $this->model_catalog_information->getInformationDownloads($this->request->get['information_id']);
+		} else {
+			$data['information_to_download'] = array();
+		}
+
+		$this->load->model('catalog/download');
+		$filter_data = array();
+		$downloads_results = $this->model_catalog_download->getDownloads($filter_data);
+		$data['downloads'] = array();
+		foreach ($downloads_results as $dr) {
+			$data['downloads'][$dr['download_id']] = array(
+				'download_id' => $dr['download_id'],
+				'name'        => strip_tags(html_entity_decode($dr['name'], ENT_QUOTES, 'UTF-8'))
+			);
 		}
 
 		$this->load->model('design/layout');

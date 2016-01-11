@@ -26,8 +26,9 @@
           <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-information" >
             <ul class="tab-nav" role="tablist">
                 <li class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab"><?php echo $tab_general; ?></a></li>
-                <li><a href="#tab-data" aria-controls="profile11" role="tab" data-toggle="tab"><?php echo $tab_data; ?></a></li>
+                <li><a href="#tab-data" aria-controls="tab-data" role="tab" data-toggle="tab"><?php echo $tab_data; ?></a></li>
                 <li><a href="#tab-design" aria-controls="tab-design" role="tab" data-toggle="tab"><?php echo $tab_design; ?></a></li>
+                <li><a href="#tab-files" aria-controls="tab-files" role="tab" data-toggle="tab"><?php echo $tab_files; ?></a></li>
             </ul>
           
             <div class="tab-content">
@@ -104,8 +105,8 @@
                         <?php } ?>
                     </div><!-- /.tab-content -->
                   </div><!-- /.tabpanel -->
-
                 </div><!-- /#tab-general -->
+
                 <div role="tabpanel" class="tab-pane" id="tab-data">
                   <div class="card-body card-padding">
                     <div class="form-group hidden">
@@ -256,6 +257,64 @@
                           <?php } ?>
                     </div>
                 </div><!-- /#tab-design -->
+              
+                <div role="tabpanel" class="tab-pane" id="tab-files">
+                  <div class="card-body card-padding">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table id="downloads" class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>Название файла</th>
+                              <th>Действия</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php $download_row = 0; ?>
+                            <?php if(!empty($information_to_download)) { ?> 
+                              <?php foreach ($information_to_download as $itd) { ?>
+                                <tr id="download-row<?php echo $download_row; ?>">
+                                  <td>
+                                    
+                                    <div class="form-group">
+                                      <div class="fg-line">
+                                        <?php if (!empty($downloads)) { ?>
+                                          <?php foreach ($downloads as $download) { ?>
+
+                                          <?php if ($itd['download_id'] == $download['download_id']) { ?>
+                                            <input type="text" name="" value="<?php echo $download['name']; ?>"  id="input-keyword" class="form-control" disabled/>
+                                            <input type="hidden" name="information_downloads[<?php echo $download_row; ?>][download_id]" value="<?php echo $download['download_id']; ?>"  id="input-keyword" class="form-control" />
+                                          <?php } ?>
+                                         
+                                          <?php } ?>
+
+                                        <?php } ?>
+                                      </div>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <td class="text-left"><button type="button" onclick="$('#download-row<?php echo $download_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                  </td>
+                                </tr>
+                              <?php $download_row++;} ?>
+                            <?php } ?>
+                              
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                             <td colspan="4" class="text-center">
+                                <div class="col-sm-offset-4 col-sm-4">
+                                  <button type="button" onclick="addFiles();" class="btn btn-primary btn-block"><i class="fa fa-plus-circle"> </i>  <?php echo $button_add; ?></button>
+                                </div>
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
           </form>
         </div><!-- /.tabpanel -->
@@ -269,5 +328,73 @@
   });
   <?php } ?>
   $('#language a:first').tab('show');
+
+
+
+//--></script>
+<script type="text/javascript"><!--
+var download_row = <?php echo $download_row; ?>;
+
+function addFiles() {
+  html  = '<tr id="download-row' + download_row + '">';
+  //html += '<td>';
+  //html += '<input type="text" name="information_downloads[' + download_row + '][download_title]" value="" class="form-control" />';
+  //html += '</td>';
+
+   html += '<td>'
+    html += '<div class="form-group"><div class="fg-line"><div class="select">';
+    html += '<select name="information_downloads[' + download_row + '][download_id]" id="input-download_id-' + download_row + '" class="form-control">';
+    html += '<option value="0"><?php echo $text_none; ?></option>';
+    <?php if (!empty($downloads)) { ?>
+      <?php foreach ($downloads as $download) { ?>
+    html += '<option value="<?php echo $download['download_id']; ?>"><?php echo $download['name']; ?></option>';
+      <?php } ?>
+    <?php } ?>
+    html += '</select></div></div></div></td>';
+
+
+  //html += '<td>';
+  //html += '<input type="text" name="information_downloads[' + download_row + '][download_id]" value="" class="form-control" />';
+  //html += '</td>';
+
+
+  //html += '  <td class="text-right" style="width: 20%;"><input type="text" name="contest_file[' + download_row + '][sort_order]" value="10" class="form-control" /></td>';
+  html += '  <td class="text-left"><button type="button" onclick="$(\'#download-row' + download_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
+  
+  $('#downloads tbody').append(html);
+  //downloadautocomplete(download_row);
+  download_row++;
+  }
+
+  function downloadautocomplete(download_row) {
+    $('input[name=\'information_downloads[' + download_row + '][download_title]\']').autocomplete({
+     
+      'source': function(request, response) {
+      $.ajax({
+       url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+        dataType: 'json',
+        success: function(json) {
+          response($.map(json, function(item) {
+            return {
+              label: item['name'],
+              value: item['download_id']
+            }
+          }));
+        }
+      });
+    },
+    'select': function(item) {
+       $('input[name=\'information_downloads[' + download_row + '][download_title]\']').val(item['label']);
+          $('input[name=\'information_downloads[' + download_row + '][download_id]\']').val(item['value']);
+      }
+    });
+}
+
+
+
+
+
+
 //--></script>
 <?php echo $footer; ?>

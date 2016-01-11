@@ -3,6 +3,7 @@ class ControllerInformationContact extends Controller {
 	private $error = array();
 
 	public function index() {
+		$this->response->redirect($this->url->link('common/home', '', 'SSL'));
 		$this->load->language('information/contact');
 
 		$this->document->setTitle($this->language->get('heading_title'));

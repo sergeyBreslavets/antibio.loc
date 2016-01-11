@@ -1,6 +1,10 @@
 <?php
 class ControllerInformationInformation extends Controller {
 	public function index() {
+
+		if(!$this->customer->isLogged()){
+			$this->response->redirect($this->url->link('account/account', '', 'SSL'));
+		}
 		$this->load->language('information/information');
 
 		$this->load->model('catalog/information');

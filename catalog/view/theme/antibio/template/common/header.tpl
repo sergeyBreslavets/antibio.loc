@@ -62,22 +62,30 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="about_us">О проекте</a></li>
-                    
-                    <?php if (!empty($icategories)) { ?>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Лекции и вебинары</a>
-                        <ul class="dropdown-menu">
-                            <?php foreach ($icategories as $ic) { ?>
-                                <li><a href="<?php echo $ic['icategory_href']; ?>"><?php echo $ic['icategory_title']; ?></a></li>
+                    <?php if (!empty($icategories_root)) { ?>
+                        <?php foreach ($icategories_root as $ir) { ?>
+
+                            <?php if ( !empty($icategories[$ir['icategory_id']]) && count($icategories[$ir['icategory_id']]) > 0 )  { ?>
+                                <li class="dropdown">
+                                    <a href="<?php echo $ir['icategory_href']; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $ir['icategory_title']; ?></a>
+                                    <ul class="dropdown-menu">
+                                        <?php foreach ($icategories[$ir['icategory_id']] as $ic) { ?>
+                                            <li><a href="<?php echo $ic['icategory_href']; ?>"><?php echo $ic['icategory_title']; ?></a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </li>
+                            <?php } else { ?>
+                                <li><a href="<?php echo $ir['icategory_href']; ?>"><?php echo $ir['icategory_title']; ?></a></li>
                             <?php } ?>
-                        </ul>
-                    </li>
-                      
+                           
+                        <?php } ?>
                     <? } ?>
+                   
                     
 
-                 <!--   <li ><a href="<?php echo $places; ?>"><?php echo $text_places; ?></a></li> -->
-                    <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
+                 <!--   <li ><a href="<?php echo $places; ?>"><?php echo $text_places; ?></a></li> 
+                    <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>-->
+
                     <?php if ($logged) { ?>
                       <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
                       <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>

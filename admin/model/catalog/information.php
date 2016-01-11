@@ -26,6 +26,15 @@ class ModelCatalogInformation extends Model {
 			");
 		}
 
+		if (isset($data['information_downloads'])) {
+			foreach ($data['information_downloads'] as $download) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "information_to_download SET 
+					information_id = '" . (int)$information_id . "', 
+					download_id = '" . (int)$download['download_id'] . "',
+					date_added = NOW()");
+			}
+		}
+		//date_added = NOW()");
 		if (isset($data['information_store'])) {
 			foreach ($data['information_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "information_to_store SET information_id = '" . (int)$information_id . "', store_id = '" . (int)$store_id . "'");
@@ -53,6 +62,8 @@ class ModelCatalogInformation extends Model {
 		
 		$this->event->trigger('pre.admin.information.edit', $data);
 
+		
+
 		$this->db->query("UPDATE " . DB_PREFIX . "information SET 
 			sort_order = '" . (int)$data['sort_order'] . "', 
 			parent_id = '" . (int)$data['parent_id'] . "', 
@@ -75,6 +86,19 @@ class ModelCatalogInformation extends Model {
 				meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'
 			");
 		}
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_download WHERE information_id = '" . (int)$information_id . "'");
+
+		if (isset($data['information_downloads'])) {
+			foreach ($data['information_downloads'] as $download) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "information_to_download SET 
+					information_id = '" . (int)$information_id . "', 
+					download_id = '" . (int)$download['download_id'] . "'
+				");
+			}
+		}
+
+
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_store WHERE information_id = '" . (int)$information_id . "'");
 
@@ -205,6 +229,10 @@ class ModelCatalogInformation extends Model {
 		return $information_store_data;
 	}
 
+	public function getInformationDownloads($information_id){
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "information_to_download WHERE information_id = '" . (int)$information_id . "'");
+		return $query->rows;
+	}
 	public function getInformationLayouts($information_id) {
 		$information_layout_data = array();
 

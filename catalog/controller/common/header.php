@@ -137,21 +137,41 @@ class ControllerCommonHeader extends Controller {
 		$data['icategories'] = array();
 
 		$filter_data = array(
-			'filter_parent' => 0,
-			'filter_top' 	=> 1,
+
 		);
 
 		$results_icategories = $this->model_catalog_icategory->getIcategorys($filter_data);
 
 		foreach ($results_icategories as $ric) {
-			$data['icategories'][] = array(
-				'icategory_title'  =>	$ric['title'],
-				'icategory_href'   =>	$this->url->link('information/icategory', 'icategory_id='.$ric['icategory_id'], 'SSL')
-			);
+			if($ric['parent_id'] == 0){
+				$data['icategories_root'][] = array(
+					'icategory_id'	   		=> 	$ric['icategory_id'],
+					'icategory_title'  		=>	$ric['title'],
+					'icategory_sort_order'	=> 	$ric['sort_order'],
+					'icategory_href'   		=>	$this->url->link('information/icategory', 'icategory_id='.$ric['icategory_id'], 'SSL')
+				);
+			} else{
+				$data['icategories'][$ric['parent_id']][] = array(
+					'icategory_id'	   		=> 	$ric['icategory_id'],
+					'icategory_parent_id'	=> 	$ric['parent_id'],
+					'icategory_title'  		=>	$ric['title'],
+					'icategory_sort_order'	=> 	$ric['sort_order'],
+					'icategory_href'   		=>	$this->url->link('information/icategory', 'icategory_id='.$ric['icategory_id'], 'SSL')
+				);
+			}
+			
 		}
 
 
-
+		/*
+		print_r('<pre>');
+		print_r($data['icategories_root']);
+		print_r('</pre>');
+		print_r('<pre>');
+		print_r($data['icategories']);
+		print_r('</pre>');
+		die();
+		*/
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);

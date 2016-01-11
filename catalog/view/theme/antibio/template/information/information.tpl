@@ -50,6 +50,25 @@
                                <?php echo $description; ?>
                               </div>
                           </div>
+                          <!--- foreach information_to_downloads-->
+                          <div class="wp-example" id="box-elements">
+                            <div class="box-element base">
+                              <div class="row">
+                                <div class="col-md-8">
+                                    <h1>
+                                       Пройти тест по теме Инфекции Верхних Дыхательных Путей
+                                    </h1>
+                                </div>
+                                <div class="col-md-4">
+                                    <a class="btn btn-b-white btn-lg pull-right" title="" href="/test_infekcii_verchnix_dixatelnix_putei">
+                                   Пройти тест
+                                    </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          
                           <hr>
 
                           <!-- Comments list section -->

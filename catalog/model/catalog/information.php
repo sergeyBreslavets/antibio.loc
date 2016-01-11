@@ -6,6 +6,15 @@ class ModelCatalogInformation extends Model {
 		return $query->row;
 	}
 
+	public function getInformationToDownload($information_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "information_to_download WHERE information_id = '" . (int)$information_id . "'");
+		return $query->rows;
+	}
+	public function getDownload($download_id) {
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "download d LEFT JOIN " . DB_PREFIX . "download_description dd ON (d.download_id = dd.download_id) WHERE d.download_id = '" . (int)$download_id . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		return $query->row;
+	}
 	/*public function getInformations() {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) LEFT JOIN " . DB_PREFIX . "information_to_store i2s ON (i.information_id = i2s.information_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "' AND i2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND i.status = '1' ORDER BY i.sort_order, LCASE(id.title) ASC");
 

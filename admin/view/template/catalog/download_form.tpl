@@ -29,21 +29,30 @@
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="tab-general">
-                   <div class="form-group required">
-            <label class="col-sm-2 control-label"><?php echo $entry_name; ?></label>
-            <div class="col-sm-10">
+                
+                <div class="row">
+                  <div class="col-sm-12">
+                     <?php foreach ($languages as $language) { ?>   
+                      <div class="form-group required <?php if (isset($error_name[$language['language_id']])) { ?> has-error <?php } ?>">
+                        <div class="fg-line">
+                            <label class="control-label" for="input-title<?php echo $language['language_id']; ?>"><?php echo $entry_name; ?></label>
+                            <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>"  id="input-title<?php echo $language['language_id']; ?>" class="form-control" />
+                        </div>
+                        <?php if (isset($error_name[$language['language_id']])) { ?>
+                          <small class="help-block"><?php echo $error_name[$language['language_id']]; ?></small>
+                        <?php } ?>
+                      </div>
+                      <?php } ?>
+                  </div>
+                </div>
+               
 
 
-              <?php foreach ($languages as $language) { ?>
-              <div class="input-group">
-                <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_name; ?>" class="form-control" />
-              </div>
-              <?php if (isset($error_name[$language['language_id']])) { ?>
-              <div class="text-danger"><?php echo $error_name[$language['language_id']]; ?></div>
-              <?php } ?>
-              <?php } ?>
-            </div>
-          </div>
+
+
+                
+
+
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tab-data">
 

@@ -2,7 +2,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="col">
                        <h4>Контактная информация</h4>
                        <ul>
@@ -13,7 +13,7 @@
                      </div>
                 </div>
                 
-                <div class="col-md-3">
+                <div class="col-md-3 hidden">
                     <div class="col">
                         <h4>Рассылка</h4>
                         <p>Укажите свйо email для получения интересной информации.</p>
@@ -44,7 +44,7 @@
                         <p class="no-margin">
                         Oбразовательной программы "Рациональное применение антимикробных средств".
                         <br><br>
-                        <a href="#" class="btn btn-block btn-base btn-icon fa-check"><span>Зарегистрироватся</span></a>
+                        <a href="/create-account" class="btn btn-block btn-base btn-icon fa-check"><span>Зарегистрироватся</span></a>
                         </p>
                     </div>
                 </div>

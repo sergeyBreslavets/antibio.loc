@@ -20,6 +20,10 @@
     <?php foreach ($links as $link) { ?>
     <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
     <?php } ?>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    
     <!-- Essential styles -->
     <link rel="stylesheet" href="catalog/view/theme/antibio/assets/assets/bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="catalog/view/theme/antibio/assets/font-awesome/css/font-awesome.min.css" type="text/css"> 

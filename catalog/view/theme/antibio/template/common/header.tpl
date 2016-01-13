@@ -30,9 +30,10 @@
     <link rel="stylesheet" href="catalog/view/theme/antibio/assets/assets/fancybox/jquery.fancybox.css?v=2.1.5" media="screen"> 
 
 
-    <!-- Boomerang styles -->
+    <!--  styles -->
     <link id="wpStylesheet" type="text/css" href="catalog/view/theme/antibio/assets/css/global-style.css" rel="stylesheet" media="screen"> 
-     <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/jquery-ui.css">  
+    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/jquery-ui.css">  
+    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/antibiotik.css">  
     <?php foreach ($styles as $style) { ?>
     <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
     <?php } ?>

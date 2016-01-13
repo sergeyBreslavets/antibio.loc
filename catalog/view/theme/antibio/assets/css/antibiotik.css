@@ -1,0 +1,9 @@
+.post-item.style2 .post-title {
+    min-height: 80px;
+}
+.post-item.style2 .post-title a {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    text-transform: none;
+}

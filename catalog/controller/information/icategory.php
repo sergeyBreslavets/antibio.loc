@@ -77,9 +77,9 @@ class ControllerInformationIcategory extends Controller {
 				}
 				$data['informations'][] = array(
 					'information_id' 	=> $result['information_id'],
-					'title'          	=> ( strlen(strip_tags( html_entity_decode($result['title'], ENT_QUOTES))) ) > 95 ? mb_substr(strip_tags(html_entity_decode($result['title'], ENT_QUOTES)), 0, 95) . '...' : strip_tags(html_entity_decode($result['title'], ENT_QUOTES)),
+					'title'          	=> ( strlen(strip_tags( html_entity_decode($result['title'], ENT_QUOTES))) ) > 80 ? mb_substr(strip_tags(html_entity_decode($result['title'], ENT_QUOTES)), 0, 80) . '...' : strip_tags(html_entity_decode($result['title'], ENT_QUOTES)),
 					'image'						=> $image,
-					'sub_description'	=> ( strlen(strip_tags( html_entity_decode($result['sub_description'], ENT_QUOTES))) ) > 95 ? mb_substr(strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)), 0, 95) . '...' : strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)),
+					'sub_description'	=> ( strlen(strip_tags( html_entity_decode($result['sub_description'], ENT_QUOTES))) ) > 80 ? mb_substr(strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)), 0, 80) . '...' : strip_tags(html_entity_decode($result['sub_description'], ENT_QUOTES)),
 					'information_href'=> $this->url->link('information/information', 'information_id=' . $result['information_id']),
 				);
 			}

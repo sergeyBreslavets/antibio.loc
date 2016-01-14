@@ -199,6 +199,25 @@
                     </div>
                     
 
+                     <div class="form-group">
+                      <div class="fg-line">
+                          <label class="control-label" for="input-sort-order"><?php echo $entry_quiz; ?></label>
+                          <div class="select">
+                              <select name="quiz_id" class="form-control">
+                                  <option value="0">--без теста --</option>
+                                  <?php foreach ($quizs as $quiz) { ?>
+                                    <?php if (isset($quiz_id) && $quiz_id == $quiz['quiz_id']) { ?>
+                                      <option value="<?php echo $quiz['quiz_id']; ?>" selected="selected"><?php echo $quiz['quiz_title']; ?></option>
+                                    <?php } else { ?>
+                                      <option value="<?php echo $quiz['quiz_id']; ?>"><?php echo $quiz['quiz_title']; ?></option>
+                                    <?php } ?>
+                                  <?php } ?>
+                              </select>
+                          </div>
+                      </div>
+                    </div>
+
+
                     <div class="form-group ">
                       <div class="fg-line">
                         <label class="control-label" for="input-sort-order"><?php echo $entry_sort_order; ?></label>

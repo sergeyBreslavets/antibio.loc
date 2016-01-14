@@ -7,6 +7,7 @@ class ModelCatalogInformation extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "information SET 
 			sort_order = '" . (int)$data['sort_order'] . "', 
 			parent_id = '" . (int)$data['parent_id'] . "', 
+			quiz_id = '" . (int)$data['quiz_id'] . "', 
 			bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', 
 			image = '" . $this->db->escape($data['image']) . "',
 			status = '" . (int)$data['status'] . "'");
@@ -67,6 +68,7 @@ class ModelCatalogInformation extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "information SET 
 			sort_order = '" . (int)$data['sort_order'] . "', 
 			parent_id = '" . (int)$data['parent_id'] . "', 
+			quiz_id = '" . (int)$data['quiz_id'] . "', 
 			bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', 
 			image = '" . $this->db->escape($data['image']) . "',
 			status = '" . (int)$data['status'] . "' 

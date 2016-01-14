@@ -281,6 +281,7 @@ class ControllerCatalogInformation extends Controller {
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_layout'] = $this->language->get('entry_layout');
 		$data['entry_parent'] = $this->language->get('entry_parent');
+		$data['entry_quiz'] = $this->language->get('entry_quiz');
 
 		$data['text_image'] = $this->language->get('text_image');
 		$data['text_browse'] = $this->language->get('text_browse');
@@ -471,8 +472,24 @@ class ControllerCatalogInformation extends Controller {
 			$data['parent_id'] = 0;
 		}
 
+		if (isset($this->request->post['quiz_id'])) {
+			$data['quiz_id'] = $this->request->post['quiz_id'];
+		} elseif (!empty($information_info)) {
+			$data['quiz_id'] = $information_info['quiz_id'];
+		} else {
+			$data['quiz_id'] = 0;
+		}
 
-
+		$this->load->model('catalog/quiz');
+		$filter_data = array();
+		$quizs_results = $this->model_catalog_quiz->getQuizs($filter_data);
+		$data['quizs'] = array();
+		foreach ($quizs_results as $qr) {
+			$data['quizs'][$qr['quiz_id']] = array(
+				'quiz_id' 		=> $qr['quiz_id'],
+				'quiz_title'  => $qr['title']
+			);
+		}
 
 
 		if (isset($this->request->post['status'])) {

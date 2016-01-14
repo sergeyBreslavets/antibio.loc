@@ -70,6 +70,21 @@
                             <?php } ?>
                           <?php }?>
                          
+                          <!--- foreach information_to_downloads-->
+                          <?php if($quiz_id){ ?>
+                            <div class="wp-example" id="box-elements">
+                                <div class="box-element base">
+                                  <div class="row">
+                                    <div class="col-md-8">
+                                        <h4>Пройти тест: <?php echo $quiz_title; ?></h4>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-b-white btn-lg pull-right" title="" href="<?php echo $quiz_href; ?>">Пройти тест</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          <?php }?>
 
                           
 

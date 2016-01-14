@@ -147,7 +147,8 @@ class ControllerInformationQuiz extends Controller {
 	    $this->document->setTitle($quiz_info['meta_title']);
 	    $this->document->setDescription($quiz_info['meta_description']);
 	    $this->document->setKeywords($quiz_info['meta_keyword']);
-
+	    
+	    $data['heading_title'] = $quiz_info['title'];
 	    //получим количество шагов для данного опроса $quiz_id
 	    $data['step_questions'] = $this->model_catalog_quiz->getSteps($quiz_id);
 	    //так как тест без картинок то не паримся насчет картинок и сразу отдаем его в шаблон

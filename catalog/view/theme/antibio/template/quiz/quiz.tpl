@@ -42,7 +42,7 @@
                   <div class="post-item">
                           
                   <div class="post-content">
-                      <h2 class="post-title">Тест по теме Инфекции Верхних Дыхательных Путей</h2>
+                      <h1 class="section-title left"><?php echo $heading_title; ?></h1>
                       <div class="row wizard-text">
                           <div class="col-sm-12 text-center ">
                               <ul class="pagination text-center pagination-default">

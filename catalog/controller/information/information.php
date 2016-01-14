@@ -82,6 +82,18 @@ class ControllerInformationInformation extends Controller {
 				
 			}
 
+			$data['quiz_id'] = (int)$information_info['quiz_id'];
+				
+			//получим инфу о тесте
+			if($data['quiz_id']){
+
+				$this->load->model('catalog/quiz');
+				$quiz_info = $this->model_catalog_quiz->getQuiz($quiz_id);
+			
+				die();
+				$data['quiz_title'] = $quiz_info['title'];
+				$data['quiz_href'] = $this->url->link('information/quiz/view', 'quiz_id=' . $quiz_info['quiz_id']);
+			}
 			
 
 

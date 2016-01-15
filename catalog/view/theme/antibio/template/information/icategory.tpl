@@ -71,9 +71,9 @@
                                       <a href="<?php echo $infoval['information_href']; ?>"><?php echo $infoval['title']; ?></a>
                                     </h2>
                                 </div>
-                                <div class="post-content clearfix">
+                                <div class="post-content  clearfix">
                                     <div class="post-tags hidden">Posted in <a href="#">HOTELS</a>, <a href="#">SPECIAL PROMOS</a>, <a href="#">SUMMER</a></div>
-                                    <div class="post-comments"><strong>0</strong>комментариев</div>
+                                    <div class="post-comments hidden"><strong>0</strong>комментариев</div>
                                     <div class="post-desc">
                                         <p><?php echo $infoval['sub_description']; ?></p>
                                     </div>

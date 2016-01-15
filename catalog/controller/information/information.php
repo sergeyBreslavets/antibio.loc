@@ -86,11 +86,8 @@ class ControllerInformationInformation extends Controller {
 				
 			//получим инфу о тесте
 			if($data['quiz_id']){
-
 				$this->load->model('catalog/quiz');
-				$quiz_info = $this->model_catalog_quiz->getQuiz($quiz_id);
-			
-				die();
+				$quiz_info = $this->model_catalog_quiz->getQuiz($data['quiz_id']);
 				$data['quiz_title'] = $quiz_info['title'];
 				$data['quiz_href'] = $this->url->link('information/quiz/view', 'quiz_id=' . $quiz_info['quiz_id']);
 			}
@@ -184,13 +181,23 @@ class ControllerInformationInformation extends Controller {
 
 			if (!headers_sent()) {
 				if (file_exists($file)) {
+
+					/*
 					header('Content-Type: application/octet-stream');
 					header('Content-Disposition: attachment; filename="' . ($mask ? $mask : basename($file)) . '"');
 					header('Expires: 0');
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 					header('Pragma: public');
 					header('Content-Length: ' . filesize($file));
-
+					*/
+					header('Content-Type: application/pdf');
+					header('Content-Disposition: inline; filename="' . ($mask ? $mask : basename($file)) . '"');
+					header('Expires: 0');
+					header('Content-Transfer-Encoding: binary');
+					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+					header('Pragma: public');
+					header('Content-Length: ' . filesize($file));
+					header('Accept-Ranges: bytes');
 					if (ob_get_level()) {
 						ob_end_clean();
 					}

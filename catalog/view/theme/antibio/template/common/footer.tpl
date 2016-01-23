@@ -65,6 +65,7 @@
 <!-- Required JS -->
 <script src="catalog/view/theme/antibio/assets/js/jquery.js"></script>
 <script src="catalog/view/theme/antibio/assets/js/jquery-ui.min.js"></script>
+<script src="catalog/view/theme/antibio/assets/js/jquery.ui.datepicker-ru.js"></script>
 <!-- Essentials -->
 <script src="catalog/view/theme/antibio/assets/js/modernizr.custom.js"></script>
 <script src="catalog/view/theme/antibio/assets/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -73,6 +74,7 @@
 <script src="catalog/view/theme/antibio/assets/js/jquery.metadata.js"></script>
 <script src="catalog/view/theme/antibio/assets/js/jquery.hoverup.js"></script>
 <script src="catalog/view/theme/antibio/assets/js/jquery.hoverdir.js"></script>
+<script src="catalog/view/theme/antibio/assets/js/calendar.js"></script>
 
 <!-- Boomerang mobile nav - Optional  -->
 <script src="catalog/view/theme/antibio/assets/assets/responsive-mobile-nav/js/jquery.dlmenu.js"></script>

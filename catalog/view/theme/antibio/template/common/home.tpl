@@ -31,28 +31,59 @@
                                     <img src="images/prv/magazine/magazine-4.jpg" alt="">
                                     <!-- Carousel caption -->
                                     <div class="caption-bottom">
-                                        <span class="title c-white">Рациональная терапия ИВДП.</span>
+                                        <span class="title c-white">Рациональная терапия ИВДП. слайд 1</span>
+                                        <span class="subtitle"></span>
+                                    </div>
+                                </a>
+                                </div> 
+                                <div class="item item-dark">
+                                <a href="article_ivhd">
+                                    <img src="images/prv/magazine/magazine-4.jpg" alt="">
+                                    <!-- Carousel caption -->
+                                    <div class="caption-bottom">
+                                        <span class="title c-white">Рациональная терапия ИВДП. слайд 2</span>
                                         <span class="subtitle"></span>
                                     </div>
                                 </a>
                                 </div>      
                             </div>
+                               <!-- Left and right controls -->
+                              <a class="left carousel-control" href="#homepageCarousel" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="right carousel-control" href="#homepageCarousel" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
 
                                
                         </div>
                     </div>
                     <div class="col-md-4">
                       
+<!--
                         <div class="wp-block mb-20">
                           <a href="/article2">
                             <img src="images/prv/magazine/magazine-small-4.jpg" class="img-responsive" alt="">
-                            <!-- Caption -->
+
                             <div class="caption-bottom">
                                 <span class="title c-white">Антибиотики повышают риск развития аритмии</span>
                                 <span class="subtitle c-white"></span>
                             </div>
                           </a>
                         </div>
+-->
+                        
+                            
+                            <div class="widget">
+                                <form action="" class="sky-form">         
+                                    <div id="dpInline"></div>
+                                </form> 
+                            </div>
+
+                        
+
                       
                         <div class="wp-block no-margin">
                           <a href="/article1">
@@ -64,6 +95,17 @@
                             </div>
                           </a>
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="widget">
+                                <form action="" class="sky-form">
+                                   <input type="text" id="calendarDateField" style="display: none;">          
+                                    <div id="dpInlineBig"></div>
+                                </form> 
+                            </div>
+                            <div class="topics">
+                                <div class="topics__list row" id="calendarListData"></div>
+                            </div>
                     </div>
                 </div>
             </div>

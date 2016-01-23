@@ -1,0 +1,33 @@
+//для большого календаря
+
+.ui-datepicker{
+	width: 100%;
+}
+.ui-datepicker td a{
+	text-align: center;
+}
+.calendarTdNotActive a {
+		color: #ccc !important;
+	}
+
+
+#dpInlineBig .ui-datepicker td {
+    font-size: 21px;
+    font-weight: 300;
+}
+#dpInlineBig .ui-datepicker-header {
+    font-size: 21px;
+}
+
+#dpInlineBig .ui-datepicker-calendar {
+    line-height: 35px;
+    font-size: 18px;
+}
+
+#dpInlineBig .ui-datepicker-calendar a{
+    width: 40px;
+}
+#dpInlineBig .ui-datepicker-calendar span{
+    width: 40px;
+    text-align: center;
+}

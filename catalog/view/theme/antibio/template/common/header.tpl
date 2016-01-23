@@ -32,8 +32,9 @@
 
     <!--  styles -->
     <link id="wpStylesheet" type="text/css" href="catalog/view/theme/antibio/assets/css/global-style.css" rel="stylesheet" media="screen"> 
-    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/jquery-ui.css">  
-    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/antibiotik.css">  
+<!--    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/jquery-ui.css">  -->
+    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/antibiotik.css"> 
+    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/css/calendar.css">  
     <?php foreach ($styles as $style) { ?>
     <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
     <?php } ?>
@@ -41,6 +42,13 @@
 
     <!-- Favicons -->
     <link href="favicon.png" rel="icon" />
+    <!-- Assets -->
+    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/assets/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/assets/owl-carousel/owl.theme.css">
+    <link rel="stylesheet" href="catalog/view/theme/antibio/assets/assets/sky-forms/css/sky-forms.css">    
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="assets/sky-forms/css/sky-forms-ie8.css">
+    <![endif]-->
 
 </head>
 <body>

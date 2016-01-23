@@ -8,7 +8,7 @@
     text-transform: none;
 }
 
-// для календаря
+/*для календаря*/
 .ui-datepicker{
 	width: 100%;
 }
@@ -17,10 +17,14 @@
 }
 
 
-// для карусели
+/*для карусели*/
 .carousel-1 .carousel-control.right {
-    right: 0px;
+    right: 0px !important;
 }
 .carousel-1 .carousel-control.left {
-    left: 0px;
+    left: 0px !important;
+}
+
+.post-item.style2.item-calendar .post-title{
+    min-height: 0px;
 }

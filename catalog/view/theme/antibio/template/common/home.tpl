@@ -104,7 +104,8 @@
                                 </form> 
                             </div>
                             <div class="topics">
-                                <div class="topics__list row" id="calendarListData"></div>
+                                <div class="row" id="calendarListData">
+                                </div>
                             </div>
                     </div>
                 </div>

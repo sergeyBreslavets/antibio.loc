@@ -22,19 +22,20 @@
         <div class="wp-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-sm-12  col-md-8">
                         <?php echo $content_top; ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-6 col-md-12">
                        <div class="widget">
-                                <form action="" class="sky-form">         
-                                    <div id="dpInline"></div>
-                                </form> 
-                            </div>
-
+                            <form action="" class="sky-form">         
+                                <div id="dpInline"></div>
+                            </form> 
+                        </div>
+                        </div>
                         
 
-                      
+                        <div class="col-sm-6 col-md-12">
                         <div class="wp-block no-margin">
                           <a href="/article_problem_rezist_jkovlev">
                             <img src="images/prv/magazine/magazine-small-7.jpg" class="img-responsive" alt="">
@@ -44,6 +45,7 @@
                                 <span class="subtitle c-white"></span>
                             </div>
                           </a>
+                        </div>
                         </div>
                     </div>
                     

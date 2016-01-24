@@ -143,7 +143,7 @@ class ControllerCommonHeader extends Controller {
 		$results_icategories = $this->model_catalog_icategory->getIcategorys($filter_data);
 
 		foreach ($results_icategories as $ric) {
-			if($ric['parent_id'] == 0){
+			if($ric['parent_id'] == 0 && $ric['bottom'] > 0){
 				$data['icategories_root'][] = array(
 					'icategory_id'	   		=> 	$ric['icategory_id'],
 					'icategory_title'  		=>	$ric['title'],

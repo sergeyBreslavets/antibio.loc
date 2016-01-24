@@ -86,6 +86,11 @@ class ControllerInformationPlace extends Controller {
 		$data['description'] = html_entity_decode($place_info['description'], ENT_QUOTES);
 		$data['place_address'] =html_entity_decode($place_info['address'], ENT_QUOTES);
 		$data['latitude_longitude'] = $place_info['latitude_longitude'];
+
+
+		$data['place_date'] = rus_date($this->language->get('date_day_date_format'), strtotime($place_info['place_date']));
+
+
 		//получим изображения стадиона
 		$place_images = $this->model_catalog_place->getPlaceImages($place_id);
 		$data['images'] = array();
@@ -128,4 +133,48 @@ class ControllerInformationPlace extends Controller {
 		}
 
 	}
+
+	public function getPlaces(){
+		$json = array();
+		$this->load->model('catalog/place');
+		$this->load->model('tool/image');
+
+		if (isset($this->request->get['category'])) {
+			$filter_type = (int)$this->request->get['category'];
+		} else {
+			$filter_type = 0;
+		}
+		$filter_data = array(
+			'filter_status'    => 1,
+			'filter_type'			 =>	$filter_type
+		);
+		$places = $this->model_catalog_place->getPlaces($filter_data);
+		$jplace = array();
+		foreach ($places as $place) {
+			
+			if ($place['image']) {
+				$image = $this->model_tool_image->resize($place['image'], 360, 200, 'h');
+			} else {
+				$image = $this->model_tool_image->resize('placeholder.png', 360, 200, 'h');
+			}
+			$jplace[] = array(
+				'id'		=>  $place['place_id'], 
+				'date'		=>  date('Y-m-d', strtotime($place['place_date'])), 
+				'title'     =>  $place['title'],
+				'locate'    =>  $place['address'],
+				'description'    =>  $place['description'],
+				'image'     =>  $image,
+				'link'		=>  $this->url->link('information/place/view', 'place_id=' . $place['place_id'])
+				
+			);
+		}
+		$json = array(
+			'events' => $jplace
+		);
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+
+
 }

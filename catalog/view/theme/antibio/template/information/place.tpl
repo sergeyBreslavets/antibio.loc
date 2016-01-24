@@ -40,17 +40,32 @@
                 <?php } ?>
                 <div class="<?php echo $class; ?>">
                   <div class="post-item">
-                      <div class="post-content">
-                          <h2 class="post-title"><a href="#" hidefocus="true" style="outline: none;"><?php echo $heading_title; ?></a></h2>
-                          <span class="post-author hidden">WRITTEN BY <a href="#" hidefocus="true" style="outline: none;">James Franco</a></span>
-                          <div class="post-tags hidden">Posted in <a href="#" hidefocus="true" style="outline: none;">HOTELS</a>, <a href="#" hidefocus="true" style="outline: none;">SPECIAL PROMOS</a>, <a href="#" hidefocus="true" style="outline: none;">SUMMER</a></div>
-                          <div class="clearfix hidden"></div>
-                          <div class="post-desc">
-                           <?php echo $description; ?>
-                           <?php echo $text_address_place; ?>
-                           <?php echo $place_address; ?>
+
+                  <div class="post-content">
+                    <h1 class="section-title left"><?php echo $heading_title; ?></h1>
+                    <div class="clearfix hidden"></div>
+                   
+                    <div class="box-element base">
+                      <div class="row">
+                          <div class="col-md-8">
+                              <h5>
+                                   <?php echo $place_address; ?>
+                              </h5>
+                          </div>
+                          <div class="col-md-4">
+                          <h5>
+                              <?php echo $place_date; ?>
+                              </h5>
                           </div>
                       </div>
+                  </div>
+                     <hr>
+
+                    <div class="post-desc">
+                     <?php echo $description; ?>
+                    </div>
+                </div>
+                      
                   </div>
 
                   

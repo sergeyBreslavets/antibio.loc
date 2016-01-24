@@ -43,36 +43,21 @@
                       <h3 class="section-title left"><span><?php echo $heading_title; ?></span></h3>
                   </div>
 
-                 <div class="row multi-columns-row">
-                   <form action="" class="sky-form">
-                  <div id="filter_date_in"></div>
-                  </form>
-                   <?php if(!empty($places)) { ?>
-                    <?php foreach ($places as $place) { ?>
-                      <div class="col-md-6">
-                          <div class="wp-block article grid">
-                              <div class="article-image">
-                                  <a href="<?php echo $place['place_href']; ?>">
-                                    <img src="<?php echo $place['image']; ?>" alt="<?php echo $place['place_title']; ?>">
-                                  </a>
-                              </div>
-                              <h3 class="title">
-                                  <a href="<?php echo $place['place_href']; ?>"><?php echo $place['place_title']; ?></a>
-                              </h3>
-                              <p><?php echo $place['description']; ?></p>
-                          </div>
+                  <div class="row multi-columns-row">
+                    <div class="col-md-12">
+                      <div class="widget">
+                        <form action="" class="sky-form">
+                           <input type="text" id="calendarDateField" style="display: none;">          
+                            <div id="dpInlineBig"></div>
+                        </form> 
                       </div>
-
-                      <?php } ?>
-                  <?php } ?>
-                </div>
-                <!-- PAGINATION -->
-                  <div class="row">
-                    <div class="col-sm-12 text-center m-t-60">
-                      <?php echo $pagination; ?>
+                      <div class="topics">
+                        <div class="row" id="calendarListData">
+                        </div>
+                      </div>
                     </div>
                   </div>
-                <!-- /PAGINATION -->
+               
 
                   
                   <?php echo $content_bottom; ?>

@@ -8,7 +8,7 @@ function dateToString(e){
 // малый календарь
 
 $(document).ready(function() {
-    jQuery.getJSON('data.json', function (json) {
+    $.getJSON('/getplaces', function (json) {
         var AvailableDates = json;
         var dateArray = [];
         for (i = 0; i < json.events.length; i++){
@@ -21,10 +21,10 @@ $(document).ready(function() {
             altField: "#calendarDateField",
             altFormat: "yy-mm-dd",
             onSelect: function(date) {
-                window.open('/calendar', '_blank');
+                 window.location = "/calendar"
             },
             beforeShowDay: function(date){
-                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                var string = $.datepicker.formatDate('yy-mm-dd', date);
                 if (dateArray.indexOf(string) == -1)
                 {
                     return [true, "calendarTdNotActive",""]; 
@@ -51,7 +51,7 @@ $(document).ready(function() {
 //большой календарь
 	
 $(document).ready(function() {
-    jQuery.getJSON('data.json', function (json) {
+    $.getJSON('/getplaces', function (json) {
         var AvailableDates = json;
         var dateArray = [];
         for (i = 0; i < json.events.length; i++){
@@ -76,7 +76,7 @@ $(document).ready(function() {
                         html += '</h2></div><div class="post-content  clearfix">';
                         html += '<div class="post-tags">' + dateToString(AvailableDates.events[i].date) + '</div>';                      
                         html += '<div class="post-desc">';
-                        var miniDesc = AvailableDates.events[i].desription;console.log(miniDesc);
+                        var miniDesc = AvailableDates.events[i].description;console.log(miniDesc);
                         miniDesc = miniDesc.slice(0,20);
                         html += '<p>' + miniDesc + '...</p>';
                         html += '</div></div></div></div></div>';
@@ -85,7 +85,7 @@ $(document).ready(function() {
                 }
             },
             beforeShowDay: function(date){
-                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                var string = $.datepicker.formatDate('yy-mm-dd', date);
                 if (dateArray.indexOf(string) == -1)
                 {
                     return [true, "calendarTdNotActive",""]; 

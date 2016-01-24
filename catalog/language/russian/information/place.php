@@ -14,7 +14,7 @@ $_['text_photo_place'] = 'Фотографии площадки';
 $_['text_description_place'] = 'Описание площадки';
 $_['text_description_heading'] = 'Описание';
 
-$_['text_address_place'] = 'Адрес площадки';
+$_['text_address_place'] = 'Адрес и дата события';
 $_['text_season'] = 'Сезон: ';
 $_['text_date'] = 'Дата: %s';
 $_['text_metro'] = 'Метро: ';

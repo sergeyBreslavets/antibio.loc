@@ -19,9 +19,14 @@
  
 
 
-1 календарь
+1 
 2 комментарии
-3 добавить авторизацию на контент ( Незарегистрированные пользователи могут видеть: новости, анонсы программы, календарь программы, общие параметры программы.)
+3 
 4 При входе на сайт должно появляться приглашение зарегистрироваться
-5 Интересно попменять на новости
+5 
 6 Добавить ввод промокодов в лк
+
+
+
+INSERT INTO `casejoke_antibio`.`oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES (NULL, 'information/place', 'calendar');
+INSERT INTO `casejoke_antibio`.`oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES (NULL, 'information/place/getplaces', 'getplaces');
